@@ -1404,4 +1404,6 @@
             <argument name="productRepository" xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface\Proxy</argument>
         </arguments>
     </type>
+    <preference for="Magento\Catalog\Helper\Wishlist\AddToWishlistInterface"
+                type="Magento\Catalog\Helper\Wishlist\NullAddToWishlist"/>
 </config>

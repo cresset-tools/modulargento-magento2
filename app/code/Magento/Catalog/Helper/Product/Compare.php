@@ -88,7 +88,7 @@ class Compare extends \Magento\Framework\Url\Helper\Data
     protected $_formKey;
 
     /**
-     * @var \Magento\Wishlist\Helper\Data
+     * @var \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface
      */
     protected $_wishlistHelper;
 
@@ -111,7 +111,7 @@ class Compare extends \Magento\Framework\Url\Helper\Data
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Catalog\Model\Session $catalogSession
      * @param \Magento\Framework\Data\Form\FormKey $formKey
-     * @param \Magento\Wishlist\Helper\Data $wishlistHelper
+     * @param \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface $wishlistHelper
      * @param \Magento\Framework\Data\Helper\PostHelper $postHelper
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
@@ -124,7 +124,7 @@ class Compare extends \Magento\Framework\Url\Helper\Data
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Catalog\Model\Session $catalogSession,
         \Magento\Framework\Data\Form\FormKey $formKey,
-        \Magento\Wishlist\Helper\Data $wishlistHelper,
+        \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface $wishlistHelper,
         \Magento\Framework\Data\Helper\PostHelper $postHelper
     ) {
         $this->_itemCollectionFactory = $itemCollectionFactory;

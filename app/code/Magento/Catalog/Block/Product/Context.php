@@ -35,7 +35,7 @@ class Context extends \Magento\Framework\View\Element\Template\Context
     protected $compareProduct;
 
     /**
-     * @var \Magento\Wishlist\Helper\Data
+     * @var \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface
      */
     protected $wishlistHelper;
 
@@ -121,7 +121,7 @@ class Context extends \Magento\Framework\View\Element\Template\Context
      * @param \Magento\Catalog\Helper\Data $catalogHelper
      * @param \Magento\Framework\Math\Random $mathRandom
      * @param \Magento\Checkout\Helper\Cart $cartHelper
-     * @param \Magento\Wishlist\Helper\Data $wishlistHelper
+     * @param \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface $wishlistHelper
      * @param \Magento\Catalog\Helper\Product\Compare $compareProduct
      * @param \Magento\Catalog\Helper\Image $imageHelper
      * @param ImageBuilder $imageBuilder
@@ -163,7 +163,7 @@ class Context extends \Magento\Framework\View\Element\Template\Context
         \Magento\Catalog\Helper\Data $catalogHelper,
         \Magento\Framework\Math\Random $mathRandom,
         \Magento\Checkout\Helper\Cart $cartHelper,
-        \Magento\Wishlist\Helper\Data $wishlistHelper,
+        \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface $wishlistHelper,
         \Magento\Catalog\Helper\Product\Compare $compareProduct,
         \Magento\Catalog\Helper\Image $imageHelper,
         \Magento\Catalog\Block\Product\ImageBuilder $imageBuilder,
@@ -316,7 +316,7 @@ class Context extends \Magento\Framework\View\Element\Template\Context
     /**
      * Get wishlist helper.
      *
-     * @return \Magento\Wishlist\Helper\Data
+     * @return \Magento\Catalog\Helper\Wishlist\AddToWishlistInterface
      */
     public function getWishlistHelper()
     {
