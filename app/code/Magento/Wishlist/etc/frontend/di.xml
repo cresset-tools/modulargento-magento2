@@ -56,4 +56,7 @@
     <type name="Magento\Catalog\Helper\Product\View">
         <plugin name="pre_render_product_options_from_wishlist" type="Magento\Wishlist\Plugin\Helper\Product\View" />
     </type>
+    <type name="Magento\Customer\Model\EmailNotificationInterface">
+        <plugin name="saveWishlistDataAndAddReferenceKeyToBackUrl" type="Magento\Wishlist\Plugin\SaveWishlistDataAndAddReferenceKeyToBackUrl"/>
+    </type>
 </config>
