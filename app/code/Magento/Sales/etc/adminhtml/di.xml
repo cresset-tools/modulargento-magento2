@@ -96,4 +96,6 @@
                 type="Magento\Sales\Plugin\OrderGrid\CountryNameToCodeFilter"
                 sortOrder="10"/>
     </type>
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Create\Items\CustomerWishlistsProviderInterface"
+                type="Magento\Sales\Block\Adminhtml\Order\Create\Items\NullCustomerWishlistsProvider"/>
 </config>

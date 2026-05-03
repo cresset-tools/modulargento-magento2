@@ -26,4 +26,6 @@
     </type>
     <preference for="Magento\Wishlist\Model\ResourceModel\Item\Product\CollectionBuilderInterface"
                 type="Magento\Wishlist\Model\Adminhtml\ResourceModel\Item\Product\CollectionBuilder"/>
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Create\Items\CustomerWishlistsProviderInterface"
+                type="Magento\Wishlist\Model\Sales\CustomerWishlistsProvider"/>
 </config>

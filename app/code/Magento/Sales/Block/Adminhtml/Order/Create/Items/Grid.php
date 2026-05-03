@@ -35,9 +35,9 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
     protected $_taxData;
 
     /**
-     * @var \Magento\Wishlist\Model\WishlistFactory
+     * @var CustomerWishlistsProviderInterface
      */
-    protected $_wishlistFactory;
+    private $customerWishlistsProvider;
 
     /**
      * @var \Magento\GiftMessage\Model\Save
@@ -69,7 +69,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
      * @param \Magento\Backend\Model\Session\Quote $sessionQuote
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
-     * @param \Magento\Wishlist\Model\WishlistFactory $wishlistFactory
+     * @param CustomerWishlistsProviderInterface $customerWishlistsProvider
      * @param \Magento\GiftMessage\Model\Save $giftMessageSave
      * @param \Magento\Tax\Model\Config $taxConfig
      * @param \Magento\Tax\Helper\Data $taxData
@@ -85,7 +85,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
         \Magento\Backend\Model\Session\Quote $sessionQuote,
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
-        \Magento\Wishlist\Model\WishlistFactory $wishlistFactory,
+        CustomerWishlistsProviderInterface $customerWishlistsProvider,
         \Magento\GiftMessage\Model\Save $giftMessageSave,
         \Magento\Tax\Model\Config $taxConfig,
         \Magento\Tax\Helper\Data $taxData,
@@ -96,7 +96,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
         ?CatalogHelper $catalogHelper = null
     ) {
         $this->_messageHelper = $messageHelper;
-        $this->_wishlistFactory = $wishlistFactory;
+        $this->customerWishlistsProvider = $customerWishlistsProvider;
         $this->_giftMessageSave = $giftMessageSave;
         $this->_taxConfig = $taxConfig;
         $this->_taxData = $taxData;
@@ -571,13 +571,17 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
     }
 
     /**
-     * Retrieve collection of customer wishlists
+     * Retrieve customer wishlists.
      *
-     * @return \Magento\Wishlist\Model\ResourceModel\Wishlist\Collection
+     * Resolved via {@see CustomerWishlistsProviderInterface}: Sales binds a
+     * null implementation by default; Magento_Wishlist (when enabled)
+     * supplies the real one.
+     *
+     * @return iterable
      */
     public function getCustomerWishlists()
     {
-        return $this->_wishlistFactory->create()->getCollection()->filterByCustomerId($this->getCustomerId());
+        return $this->customerWishlistsProvider->get($this->getCustomerId());
     }
 
     /**
