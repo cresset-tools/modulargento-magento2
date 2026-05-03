@@ -63,11 +63,6 @@ class InitializeReportEntityTypesAndPages implements DataPatchInterface, PatchVe
                 'event_type_id' => \Magento\Reports\Model\Event::EVENT_PRODUCT_TO_CART,
                 'event_name' => 'checkout_cart_add_product'
             ],
-            [
-                'event_type_id' => \Magento\Reports\Model\Event::EVENT_PRODUCT_TO_WISHLIST,
-                'event_name' => 'wishlist_add_product'
-            ],
-            ['event_type_id' => \Magento\Reports\Model\Event::EVENT_WISHLIST_SHARE, 'event_name' => 'wishlist_share'],
         ];
 
         foreach ($eventTypeData as $row) {
