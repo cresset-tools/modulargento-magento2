@@ -3,7 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\Customer\Controller\Adminhtml\Index;
+namespace Magento\Wishlist\Controller\Adminhtml\Index;
 
 class Wishlist extends \Magento\Customer\Controller\Adminhtml\Index
 {
