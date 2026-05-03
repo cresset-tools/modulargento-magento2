@@ -89,4 +89,6 @@
             </argument>
         </arguments>
     </type>
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Create\Items\CustomerWishlistsProviderInterface"
+                type="Magento\Sales\Block\Adminhtml\Order\Create\Items\NullCustomerWishlistsProvider"/>
 </config>
