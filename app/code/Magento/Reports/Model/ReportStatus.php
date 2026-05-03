@@ -57,8 +57,6 @@ class ReportStatus
             Event::EVENT_PRODUCT_SEND => 'reports/options/product_send_enabled',
             Event::EVENT_PRODUCT_COMPARE => 'reports/options/product_compare_enabled',
             Event::EVENT_PRODUCT_TO_CART => 'reports/options/product_to_cart_enabled',
-            Event::EVENT_PRODUCT_TO_WISHLIST => 'reports/options/product_to_wishlist_enabled',
-            Event::EVENT_WISHLIST_SHARE => 'reports/options/wishlist_share_enabled',
         ];
 
         if (!isset($typeToPathMap[$reportEventType])) {
