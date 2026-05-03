@@ -16,7 +16,6 @@
         "magento/module-downloadable": "*",
         "magento/module-eav": "*",
         "magento/module-quote": "*",
-        "magento/module-review": "*",
         "magento/module-sales": "*",
         "magento/module-sales-rule": "*",
         "magento/module-store": "*",
