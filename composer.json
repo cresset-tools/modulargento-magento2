@@ -337,6 +337,8 @@
         "magento/framework": "*",
         "magento/framework-amqp": "*",
         "magento/framework-bulk": "*",
+        "magento/framework-graph-ql": "*",
+        "magento/framework-graph-ql-schema-stitching": "*",
         "magento/framework-message-queue": "*",
         "magento/framework-stomp": "*",
         "magento/module-csp": "*",
