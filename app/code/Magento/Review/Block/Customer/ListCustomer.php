@@ -7,6 +7,7 @@ namespace Magento\Review\Block\Customer;
 
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Block\Account\Newsletter\SubscriptionStatusProviderInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Review\Helper\Data as ReviewHelper;
 
@@ -41,7 +42,7 @@ class ListCustomer extends \Magento\Customer\Block\Account\Dashboard
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
+     * @param SubscriptionStatusProviderInterface $subscriptionStatusProvider
      * @param CustomerRepositoryInterface $customerRepository
      * @param AccountManagementInterface $customerAccountManagement
      * @param \Magento\Review\Model\ResourceModel\Review\Product\CollectionFactory $collectionFactory
@@ -52,7 +53,7 @@ class ListCustomer extends \Magento\Customer\Block\Account\Dashboard
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
-        \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory,
+        SubscriptionStatusProviderInterface $subscriptionStatusProvider,
         CustomerRepositoryInterface $customerRepository,
         AccountManagementInterface $customerAccountManagement,
         \Magento\Review\Model\ResourceModel\Review\Product\CollectionFactory $collectionFactory,
@@ -65,7 +66,7 @@ class ListCustomer extends \Magento\Customer\Block\Account\Dashboard
         parent::__construct(
             $context,
             $customerSession,
-            $subscriberFactory,
+            $subscriptionStatusProvider,
             $customerRepository,
             $customerAccountManagement,
             $data
