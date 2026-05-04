@@ -15,8 +15,8 @@ use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
+use Magento\CustomerGraphQl\Model\Customer\Newsletter\SubscriptionToggleInterface;
 use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Newsletter\Model\SubscriptionManagerInterface;
 use Magento\Store\Api\Data\StoreInterface;
 
 /**
@@ -51,9 +51,9 @@ class CreateCustomerAccount
     private $dataObjectProcessor;
 
     /**
-     * @var SubscriptionManagerInterface
+     * @var SubscriptionToggleInterface
      */
-    private $subscriptionManager;
+    private $subscriptionToggle;
 
     /**
      * @var ValidatorExceptionProcessor
@@ -68,7 +68,7 @@ class CreateCustomerAccount
      * @param AccountManagementInterface $accountManagement
      * @param DataObjectProcessor $dataObjectProcessor
      * @param ValidateCustomerData $validateCustomerData
-     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param SubscriptionToggleInterface $subscriptionToggle
      * @param ValidatorExceptionProcessor $validatorExceptionProcessor
      */
     public function __construct(
@@ -77,7 +77,7 @@ class CreateCustomerAccount
         AccountManagementInterface $accountManagement,
         DataObjectProcessor $dataObjectProcessor,
         ValidateCustomerData $validateCustomerData,
-        SubscriptionManagerInterface $subscriptionManager,
+        SubscriptionToggleInterface $subscriptionToggle,
         ValidatorExceptionProcessor $validatorExceptionProcessor
     ) {
         $this->dataObjectHelper = $dataObjectHelper;
@@ -85,7 +85,7 @@ class CreateCustomerAccount
         $this->accountManagement = $accountManagement;
         $this->validateCustomerData = $validateCustomerData;
         $this->dataObjectProcessor = $dataObjectProcessor;
-        $this->subscriptionManager = $subscriptionManager;
+        $this->subscriptionToggle = $subscriptionToggle;
         $this->validatorExceptionProcessor = $validatorExceptionProcessor;
     }
 
@@ -108,11 +108,7 @@ class CreateCustomerAccount
         }
 
         if (isset($data['is_subscribed'])) {
-            if ((bool)$data['is_subscribed']) {
-                $this->subscriptionManager->subscribeCustomer((int)$customer->getId(), (int)$store->getId());
-            } else {
-                $this->subscriptionManager->unsubscribeCustomer((int)$customer->getId(), (int)$store->getId());
-            }
+            $this->subscriptionToggle->apply((int)$customer->getId(), (int)$store->getId(), (bool)$data['is_subscribed']);
         }
         return $customer;
     }

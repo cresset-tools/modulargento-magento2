@@ -6,6 +6,8 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CustomerGraphQl\Model\Customer\Newsletter\SubscriptionToggleInterface" type="Magento\CustomerGraphQl\Model\Customer\Newsletter\NullSubscriptionToggle" />
+    <preference for="Magento\CustomerGraphQl\Model\Customer\Newsletter\NewsletterAvailabilityInterface" type="Magento\CustomerGraphQl\Model\Customer\Newsletter\NullNewsletterAvailability" />
     <type name="Magento\GraphQlResolverCache\Model\Resolver\Result\TagResolver">
         <arguments>
             <argument name="invalidatableObjectTypes" xsi:type="array">
@@ -14,9 +16,6 @@
                 </item>
                 <item name="Magento\Customer\Model\Address" xsi:type="string">
                     Magento\Customer\Model\Address
-                </item>
-                <item name="Magento\Newsletter\Model\Subscriber" xsi:type="string">
-                    Magento\Newsletter\Model\Subscriber
                 </item>
             </argument>
         </arguments>

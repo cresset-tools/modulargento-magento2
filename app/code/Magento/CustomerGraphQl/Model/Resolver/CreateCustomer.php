@@ -9,12 +9,11 @@ namespace Magento\CustomerGraphQl\Model\Resolver;
 
 use Magento\CustomerGraphQl\Model\Customer\CreateCustomerAccount;
 use Magento\CustomerGraphQl\Model\Customer\ExtractCustomerData;
+use Magento\CustomerGraphQl\Model\Customer\Newsletter\NewsletterAvailabilityInterface;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
-use Magento\Newsletter\Model\Config;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Create customer account resolver
@@ -32,23 +31,23 @@ class CreateCustomer implements ResolverInterface
     private $createCustomerAccount;
 
     /**
-     * @var Config
+     * @var NewsletterAvailabilityInterface
      */
-    private $newsLetterConfig;
+    private $newsletterAvailability;
 
     /**
      * CreateCustomer constructor.
      *
      * @param ExtractCustomerData $extractCustomerData
      * @param CreateCustomerAccount $createCustomerAccount
-     * @param Config $newsLetterConfig
+     * @param NewsletterAvailabilityInterface $newsletterAvailability
      */
     public function __construct(
         ExtractCustomerData $extractCustomerData,
         CreateCustomerAccount $createCustomerAccount,
-        Config $newsLetterConfig
+        NewsletterAvailabilityInterface $newsletterAvailability
     ) {
-        $this->newsLetterConfig = $newsLetterConfig;
+        $this->newsletterAvailability = $newsletterAvailability;
         $this->extractCustomerData = $extractCustomerData;
         $this->createCustomerAccount = $createCustomerAccount;
     }
@@ -67,7 +66,7 @@ class CreateCustomer implements ResolverInterface
             throw new GraphQlInputException(__('"input" value should be specified'));
         }
 
-        if (!$this->newsLetterConfig->isActive(ScopeInterface::SCOPE_STORE)) {
+        if (!$this->newsletterAvailability->isAvailable()) {
             $args['input']['is_subscribed'] = false;
         }
         if (isset($args['input']['date_of_birth'])) {

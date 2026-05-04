@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CustomerGraphQl\Model\Customer\Newsletter\SubscriptionToggleInterface" type="Magento\Newsletter\Model\CustomerGraphQl\SubscriptionToggle" />
+    <preference for="Magento\CustomerGraphQl\Model\Customer\Newsletter\NewsletterAvailabilityInterface" type="Magento\Newsletter\Model\CustomerGraphQl\NewsletterAvailability" />
+    <type name="Magento\GraphQlResolverCache\Model\Resolver\Result\TagResolver">
+        <arguments>
+            <argument name="invalidatableObjectTypes" xsi:type="array">
+                <item name="Magento\Newsletter\Model\Subscriber" xsi:type="string">
+                    Magento\Newsletter\Model\Subscriber
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
