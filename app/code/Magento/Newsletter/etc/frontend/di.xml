@@ -6,6 +6,8 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Customer\Block\Account\Newsletter\SubscriptionStatusProviderInterface" type="Magento\Newsletter\Model\Customer\SubscriptionStatusProvider" />
+    <preference for="Magento\Customer\Block\Form\NewsletterConfigInterface" type="Magento\Newsletter\Model\Customer\BlockNewsletterConfig" />
     <type name="Magento\Framework\Url\SecurityInfo">
         <arguments>
             <argument name="secureUrlList" xsi:type="array">

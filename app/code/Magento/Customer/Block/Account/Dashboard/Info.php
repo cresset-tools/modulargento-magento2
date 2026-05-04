@@ -6,14 +6,13 @@
 namespace Magento\Customer\Block\Account\Dashboard;
 
 use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Block\Account\Newsletter\SubscriptionStatusProviderInterface;
 use Magento\Customer\Block\Form\Register;
 use Magento\Customer\Helper\Session\CurrentCustomer;
 use Magento\Customer\Helper\View;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Newsletter\Model\Subscriber;
-use Magento\Newsletter\Model\SubscriberFactory;
 
 /**
  * Dashboard Customer Info
@@ -24,16 +23,9 @@ use Magento\Newsletter\Model\SubscriberFactory;
 class Info extends Template
 {
     /**
-     * Cached subscription object
-     *
-     * @var Subscriber
+     * @var SubscriptionStatusProviderInterface
      */
-    protected $_subscription;
-
-    /**
-     * @var SubscriberFactory
-     */
-    protected $_subscriberFactory;
+    protected $subscriptionStatusProvider;
 
     /**
      * @var View
@@ -50,19 +42,19 @@ class Info extends Template
      *
      * @param Context $context
      * @param CurrentCustomer $currentCustomer
-     * @param SubscriberFactory $subscriberFactory
+     * @param SubscriptionStatusProviderInterface $subscriptionStatusProvider
      * @param View $helperView
      * @param array $data
      */
     public function __construct(
         Context $context,
         CurrentCustomer $currentCustomer,
-        SubscriberFactory $subscriberFactory,
+        SubscriptionStatusProviderInterface $subscriptionStatusProvider,
         View $helperView,
         array $data = []
     ) {
         $this->currentCustomer = $currentCustomer;
-        $this->_subscriberFactory = $subscriberFactory;
+        $this->subscriptionStatusProvider = $subscriptionStatusProvider;
         $this->_helperView = $helperView;
         parent::__construct($context, $data);
     }
@@ -102,24 +94,6 @@ class Info extends Template
     }
 
     /**
-     * Get Customer Subscription Object Information
-     *
-     * @return Subscriber
-     */
-    public function getSubscriptionObject()
-    {
-        if (!$this->_subscription) {
-            $this->_subscription = $this->_createSubscriber();
-            $customer = $this->getCustomer();
-            if ($customer) {
-                $websiteId = (int)$this->_storeManager->getWebsite()->getId();
-                $this->_subscription->loadByCustomer((int)$customer->getId(), $websiteId);
-            }
-        }
-        return $this->_subscription;
-    }
-
-    /**
      * Gets Customer subscription status
      *
      * @return bool
@@ -128,7 +102,12 @@ class Info extends Template
      */
     public function getIsSubscribed()
     {
-        return $this->getSubscriptionObject()->isSubscribed();
+        $customer = $this->getCustomer();
+        if (!$customer) {
+            return false;
+        }
+        $websiteId = (int)$this->_storeManager->getWebsite()->getId();
+        return $this->subscriptionStatusProvider->isSubscribed((int)$customer->getId(), $websiteId);
     }
 
     /**
@@ -141,16 +120,6 @@ class Info extends Template
         return $this->getLayout()
             ->getBlockSingleton(Register::class)
             ->isNewsletterEnabled();
-    }
-
-    /**
-     * Create new instance of Subscriber
-     *
-     * @return Subscriber
-     */
-    protected function _createSubscriber()
-    {
-        return $this->_subscriberFactory->create();
     }
 
     /**

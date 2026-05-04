@@ -8,8 +8,6 @@ namespace Magento\Customer\Block\Form;
 use Magento\Customer\Helper\Address;
 use Magento\Customer\Model\AccountManagement;
 use Magento\Framework\App\ObjectManager;
-use Magento\Newsletter\Model\Config;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Customer register form block
@@ -36,7 +34,7 @@ class Register extends \Magento\Directory\Block\Data
     protected $_customerUrl;
 
     /**
-     * @var Config
+     * @var NewsletterConfigInterface
      */
     private $newsLetterConfig;
 
@@ -69,7 +67,7 @@ class Register extends \Magento\Directory\Block\Data
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Customer\Model\Url $customerUrl,
         array $data = [],
-        ?Config $newsLetterConfig = null,
+        ?NewsletterConfigInterface $newsLetterConfig = null,
         ?Address $addressHelper = null
     ) {
         $data['addressHelper'] = $addressHelper ?: ObjectManager::getInstance()->get(Address::class);
@@ -77,7 +75,7 @@ class Register extends \Magento\Directory\Block\Data
         $this->_customerUrl = $customerUrl;
         $this->_moduleManager = $moduleManager;
         $this->_customerSession = $customerSession;
-        $this->newsLetterConfig = $newsLetterConfig ?: ObjectManager::getInstance()->get(Config::class);
+        $this->newsLetterConfig = $newsLetterConfig ?: ObjectManager::getInstance()->get(NewsletterConfigInterface::class);
         parent::__construct(
             $context,
             $directoryHelper,
@@ -185,7 +183,7 @@ class Register extends \Magento\Directory\Block\Data
     public function isNewsletterEnabled()
     {
         return $this->_moduleManager->isOutputEnabled('Magento_Newsletter')
-            && $this->newsLetterConfig->isActive(ScopeInterface::SCOPE_STORE);
+            && $this->newsLetterConfig->isActive();
     }
 
     /**
