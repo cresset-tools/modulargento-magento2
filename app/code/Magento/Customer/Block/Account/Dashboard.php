@@ -9,12 +9,11 @@ use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\Data\AddressInterface;
 use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Block\Account\Newsletter\SubscriptionStatusProviderInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Newsletter\Model\Subscriber;
-use Magento\Newsletter\Model\SubscriberFactory;
 
 /**
  * Customer dashboard block
@@ -25,19 +24,14 @@ use Magento\Newsletter\Model\SubscriberFactory;
 class Dashboard extends Template
 {
     /**
-     * @var Subscriber
-     */
-    protected $subscription;
-
-    /**
      * @var Session
      */
     protected $customerSession;
 
     /**
-     * @var SubscriberFactory
+     * @var SubscriptionStatusProviderInterface
      */
-    protected $subscriberFactory;
+    protected $subscriptionStatusProvider;
 
     /**
      * @var CustomerRepositoryInterface
@@ -52,7 +46,7 @@ class Dashboard extends Template
     /**
      * @param Context $context
      * @param Session $customerSession
-     * @param SubscriberFactory $subscriberFactory
+     * @param SubscriptionStatusProviderInterface $subscriptionStatusProvider
      * @param CustomerRepositoryInterface $customerRepository
      * @param AccountManagementInterface $customerAccountManagement
      * @param array $data
@@ -60,13 +54,13 @@ class Dashboard extends Template
     public function __construct(
         Context $context,
         Session $customerSession,
-        SubscriberFactory $subscriberFactory,
+        SubscriptionStatusProviderInterface $subscriptionStatusProvider,
         CustomerRepositoryInterface $customerRepository,
         AccountManagementInterface $customerAccountManagement,
         array $data = []
     ) {
         $this->customerSession = $customerSession;
-        $this->subscriberFactory = $subscriberFactory;
+        $this->subscriptionStatusProvider = $subscriptionStatusProvider;
         $this->customerRepository = $customerRepository;
         $this->customerAccountManagement = $customerAccountManagement;
         parent::__construct($context, $data);
@@ -140,19 +134,14 @@ class Dashboard extends Template
     }
 
     /**
-     * Retrieve the subscription object (i.e. the subscriber).
+     * Whether the current customer is subscribed to the newsletter on the current website.
      *
-     * @return Subscriber
+     * @return bool
      */
-    public function getSubscriptionObject()
+    public function isSubscribed()
     {
-        if ($this->subscription === null) {
-            $websiteId = (int)$this->_storeManager->getWebsite()->getId();
-            $this->subscription = $this->_createSubscriber();
-            $this->subscription->loadByCustomer((int)$this->getCustomer()->getId(), $websiteId);
-        }
-
-        return $this->subscription;
+        $websiteId = (int)$this->_storeManager->getWebsite()->getId();
+        return $this->subscriptionStatusProvider->isSubscribed((int)$this->getCustomer()->getId(), $websiteId);
     }
 
     /**
@@ -172,7 +161,7 @@ class Dashboard extends Template
      */
     public function getSubscriptionText()
     {
-        if ($this->getSubscriptionObject()->isSubscribed()) {
+        if ($this->isSubscribed()) {
             return __('You are subscribed to our newsletter.');
         }
 
@@ -224,13 +213,4 @@ class Dashboard extends Template
         return $this->getUrl('customer/account/');
     }
 
-    /**
-     * Create an instance of a subscriber.
-     *
-     * @return Subscriber
-     */
-    protected function _createSubscriber()
-    {
-        return $this->subscriberFactory->create();
-    }
 }

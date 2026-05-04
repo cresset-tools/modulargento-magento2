@@ -28,7 +28,7 @@ class Newsletter extends \Magento\Customer\Block\Account\Dashboard
      */
     public function getIsSubscribed()
     {
-        return $this->getSubscriptionObject()->isSubscribed();
+        return $this->isSubscribed();
     }
 
     /**
