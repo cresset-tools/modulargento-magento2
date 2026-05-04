@@ -9,7 +9,6 @@
         "magento/module-eav": "*",
         "magento/module-eav-graph-ql": "*",
         "magento/module-graph-ql": "*",
-        "magento/module-newsletter": "*",
         "magento/module-integration": "*",
         "magento/module-store": "*",
         "magento/framework": "*",
