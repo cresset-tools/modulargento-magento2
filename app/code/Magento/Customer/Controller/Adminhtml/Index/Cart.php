@@ -34,7 +34,6 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Result\Layout;
 use Magento\Framework\View\Result\LayoutFactory;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Newsletter\Model\SubscriberFactory;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteFactory;
@@ -74,7 +73,6 @@ class Cart extends BaseAction implements HttpGetActionInterface, HttpPostActionI
      * @param CustomerFactory $customerFactory
      * @param AddressFactory $addressFactory
      * @param FormFactory $formFactory
-     * @param SubscriberFactory $subscriberFactory
      * @param View $viewHelper
      * @param Random $random
      * @param CustomerRepositoryInterface $customerRepository
@@ -104,7 +102,6 @@ class Cart extends BaseAction implements HttpGetActionInterface, HttpPostActionI
         CustomerFactory $customerFactory,
         AddressFactory $addressFactory,
         FormFactory $formFactory,
-        SubscriberFactory $subscriberFactory,
         View $viewHelper,
         Random $random,
         CustomerRepositoryInterface $customerRepository,
@@ -133,7 +130,6 @@ class Cart extends BaseAction implements HttpGetActionInterface, HttpPostActionI
             $customerFactory,
             $addressFactory,
             $formFactory,
-            $subscriberFactory,
             $viewHelper,
             $random,
             $customerRepository,

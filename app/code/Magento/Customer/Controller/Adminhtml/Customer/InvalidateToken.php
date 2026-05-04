@@ -46,7 +46,6 @@ class InvalidateToken extends \Magento\Customer\Controller\Adminhtml\Index imple
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
      * @param \Magento\Customer\Model\AddressFactory $addressFactory
      * @param \Magento\Customer\Model\Metadata\FormFactory $formFactory
-     * @param \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
      * @param \Magento\Customer\Helper\View $viewHelper
      * @param \Magento\Framework\Math\Random $random
      * @param CustomerRepositoryInterface $customerRepository
@@ -76,7 +75,6 @@ class InvalidateToken extends \Magento\Customer\Controller\Adminhtml\Index imple
         \Magento\Customer\Model\CustomerFactory $customerFactory,
         \Magento\Customer\Model\AddressFactory $addressFactory,
         \Magento\Customer\Model\Metadata\FormFactory $formFactory,
-        \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory,
         \Magento\Customer\Helper\View $viewHelper,
         \Magento\Framework\Math\Random $random,
         CustomerRepositoryInterface $customerRepository,
@@ -105,7 +103,6 @@ class InvalidateToken extends \Magento\Customer\Controller\Adminhtml\Index imple
             $customerFactory,
             $addressFactory,
             $formFactory,
-            $subscriberFactory,
             $viewHelper,
             $random,
             $customerRepository,
