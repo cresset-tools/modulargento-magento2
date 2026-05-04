@@ -14,8 +14,8 @@ use Magento\Framework\GraphQl\Exception\GraphQlAlreadyExistsException;
 use Magento\Framework\GraphQl\Exception\GraphQlAuthenticationException;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use Magento\Framework\GraphQl\Exception\GraphQlNoSuchEntityException;
+use Magento\CustomerGraphQl\Model\Customer\Newsletter\SubscriptionToggleInterface;
 use Magento\Framework\Api\DataObjectHelper;
-use Magento\Newsletter\Model\SubscriptionManagerInterface;
 use Magento\Store\Api\Data\StoreInterface;
 
 /**
@@ -51,16 +51,16 @@ class UpdateCustomerAccount
     private $restrictedKeys;
 
     /**
-     * @var SubscriptionManagerInterface
+     * @var SubscriptionToggleInterface
      */
-    private $subscriptionManager;
+    private $subscriptionToggle;
 
     /**
      * @param SaveCustomer $saveCustomer
      * @param CheckCustomerPassword $checkCustomerPassword
      * @param DataObjectHelper $dataObjectHelper
      * @param ValidateCustomerData $validateCustomerData
-     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param SubscriptionToggleInterface $subscriptionToggle
      * @param array $restrictedKeys
      */
     public function __construct(
@@ -68,7 +68,7 @@ class UpdateCustomerAccount
         CheckCustomerPassword $checkCustomerPassword,
         DataObjectHelper $dataObjectHelper,
         ValidateCustomerData $validateCustomerData,
-        SubscriptionManagerInterface $subscriptionManager,
+        SubscriptionToggleInterface $subscriptionToggle,
         array $restrictedKeys = []
     ) {
         $this->saveCustomer = $saveCustomer;
@@ -76,7 +76,7 @@ class UpdateCustomerAccount
         $this->dataObjectHelper = $dataObjectHelper;
         $this->restrictedKeys = $restrictedKeys;
         $this->validateCustomerData = $validateCustomerData;
-        $this->subscriptionManager = $subscriptionManager;
+        $this->subscriptionToggle = $subscriptionToggle;
     }
 
     /**
@@ -117,11 +117,7 @@ class UpdateCustomerAccount
         $this->saveCustomer->execute($customer);
 
         if (isset($data['is_subscribed'])) {
-            if ((bool)$data['is_subscribed']) {
-                $this->subscriptionManager->subscribeCustomer((int)$customer->getId(), (int)$store->getId());
-            } else {
-                $this->subscriptionManager->unsubscribeCustomer((int)$customer->getId(), (int)$store->getId());
-            }
+            $this->subscriptionToggle->apply((int)$customer->getId(), (int)$store->getId(), (bool)$data['is_subscribed']);
         }
     }
 }
