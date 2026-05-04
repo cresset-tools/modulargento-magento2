@@ -29,7 +29,6 @@ use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Helper\Address;
 use Magento\Framework\UrlFactory;
 use Magento\Customer\Model\Metadata\FormFactory;
-use Magento\Newsletter\Model\SubscriberFactory;
 use Magento\Customer\Api\Data\RegionInterfaceFactory;
 use Magento\Customer\Api\Data\AddressInterfaceFactory;
 use Magento\Customer\Api\Data\CustomerInterfaceFactory;
@@ -65,11 +64,6 @@ class CreatePost extends AbstractAccount implements CsrfAwareActionInterface, Ht
      * @var \Magento\Customer\Model\Metadata\FormFactory
      */
     protected $formFactory;
-
-    /**
-     * @var \Magento\Newsletter\Model\SubscriberFactory
-     */
-    protected $subscriberFactory;
 
     /**
      * @var \Magento\Customer\Api\Data\RegionInterfaceFactory
@@ -170,7 +164,6 @@ class CreatePost extends AbstractAccount implements CsrfAwareActionInterface, Ht
      * @param Address $addressHelper
      * @param UrlFactory $urlFactory
      * @param FormFactory $formFactory
-     * @param SubscriberFactory $subscriberFactory
      * @param RegionInterfaceFactory $regionDataFactory
      * @param AddressInterfaceFactory $addressDataFactory
      * @param CustomerInterfaceFactory $customerDataFactory
@@ -195,7 +188,6 @@ class CreatePost extends AbstractAccount implements CsrfAwareActionInterface, Ht
         Address $addressHelper,
         UrlFactory $urlFactory,
         FormFactory $formFactory,
-        SubscriberFactory $subscriberFactory,
         RegionInterfaceFactory $regionDataFactory,
         AddressInterfaceFactory $addressDataFactory,
         CustomerInterfaceFactory $customerDataFactory,
@@ -215,7 +207,6 @@ class CreatePost extends AbstractAccount implements CsrfAwareActionInterface, Ht
         $this->accountManagement = $accountManagement;
         $this->addressHelper = $addressHelper;
         $this->formFactory = $formFactory;
-        $this->subscriberFactory = $subscriberFactory;
         $this->regionDataFactory = $regionDataFactory;
         $this->addressDataFactory = $addressDataFactory;
         $this->customerDataFactory = $customerDataFactory;
