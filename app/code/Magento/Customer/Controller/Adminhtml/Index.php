@@ -67,11 +67,6 @@ abstract class Index extends \Magento\Backend\App\Action
     protected $_addressFactory = null;
 
     /**
-     * @var \Magento\Newsletter\Model\SubscriberFactory
-     */
-    protected $_subscriberFactory;
-
-    /**
      * @var \Magento\Customer\Model\Metadata\FormFactory
      */
     protected $_formFactory;
@@ -179,7 +174,6 @@ abstract class Index extends \Magento\Backend\App\Action
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
      * @param \Magento\Customer\Model\AddressFactory $addressFactory
      * @param \Magento\Customer\Model\Metadata\FormFactory $formFactory
-     * @param \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
      * @param \Magento\Customer\Helper\View $viewHelper
      * @param \Magento\Framework\Math\Random $random
      * @param CustomerRepositoryInterface $customerRepository
@@ -207,7 +201,6 @@ abstract class Index extends \Magento\Backend\App\Action
         \Magento\Customer\Model\CustomerFactory $customerFactory,
         \Magento\Customer\Model\AddressFactory $addressFactory,
         \Magento\Customer\Model\Metadata\FormFactory $formFactory,
-        \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory,
         \Magento\Customer\Helper\View $viewHelper,
         \Magento\Framework\Math\Random $random,
         CustomerRepositoryInterface $customerRepository,
@@ -232,7 +225,6 @@ abstract class Index extends \Magento\Backend\App\Action
         $this->_customerFactory = $customerFactory;
         $this->_addressFactory = $addressFactory;
         $this->_formFactory = $formFactory;
-        $this->_subscriberFactory = $subscriberFactory;
         $this->_viewHelper = $viewHelper;
         $this->_random = $random;
         $this->_customerRepository = $customerRepository;

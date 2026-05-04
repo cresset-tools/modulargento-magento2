@@ -46,8 +46,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\Validator\Exception;
 use Magento\Framework\View\Result\LayoutFactory;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Newsletter\Model\SubscriberFactory;
-use Magento\Newsletter\Model\SubscriptionManagerInterface;
+use Magento\Customer\Controller\Adminhtml\Newsletter\AdminSubscriptionToggleInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
@@ -63,9 +62,9 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
     private $emailNotification;
 
     /**
-     * @var SubscriptionManagerInterface
+     * @var AdminSubscriptionToggleInterface
      */
-    private $subscriptionManager;
+    private $subscriptionToggle;
 
     /**
      * @var AddressRegistry
@@ -91,7 +90,6 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
      * @param CustomerFactory $customerFactory
      * @param AddressFactory $addressFactory
      * @param FormFactory $formFactory
-     * @param SubscriberFactory $subscriberFactory
      * @param View $viewHelper
      * @param Random $random
      * @param CustomerRepositoryInterface $customerRepository
@@ -110,7 +108,7 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
      * @param PageFactory $resultPageFactory
      * @param ForwardFactory $resultForwardFactory
      * @param JsonFactory $resultJsonFactory
-     * @param SubscriptionManagerInterface $subscriptionManager
+     * @param AdminSubscriptionToggleInterface $subscriptionToggle
      * @param AddressRegistry|null $addressRegistry
      * @param StoreManagerInterface|null $storeManager
      * @param SetCustomerStore|null $customerStore
@@ -124,7 +122,6 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
         CustomerFactory $customerFactory,
         AddressFactory $addressFactory,
         FormFactory $formFactory,
-        SubscriberFactory $subscriberFactory,
         View $viewHelper,
         Random $random,
         CustomerRepositoryInterface $customerRepository,
@@ -143,7 +140,7 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
         PageFactory $resultPageFactory,
         ForwardFactory $resultForwardFactory,
         JsonFactory $resultJsonFactory,
-        SubscriptionManagerInterface $subscriptionManager,
+        AdminSubscriptionToggleInterface $subscriptionToggle,
         ?AddressRegistry $addressRegistry = null,
         ?StoreManagerInterface $storeManager = null,
         ?SetCustomerStore $customerStore = null
@@ -155,7 +152,6 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
             $customerFactory,
             $addressFactory,
             $formFactory,
-            $subscriberFactory,
             $viewHelper,
             $random,
             $customerRepository,
@@ -175,7 +171,7 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
             $resultForwardFactory,
             $resultJsonFactory
         );
-        $this->subscriptionManager = $subscriptionManager;
+        $this->subscriptionToggle = $subscriptionToggle;
         $this->addressRegistry = $addressRegistry ?: ObjectManager::getInstance()->get(AddressRegistry::class);
         $this->storeManager = $storeManager ?? ObjectManager::getInstance()->get(StoreManagerInterface::class);
         $this->customerStore = $customerStore ?? ObjectManager::getInstance()->get(SetCustomerStore::class);
@@ -476,11 +472,7 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Index implements HttpP
 
         foreach ($subscriptionStatus as $websiteId => $status) {
             $storeId = $subscriptionStore[$websiteId] ?? $customer->getStoreId();
-            if ($status) {
-                $this->subscriptionManager->subscribeCustomer((int)$customer->getId(), $storeId);
-            } else {
-                $this->subscriptionManager->unsubscribeCustomer((int)$customer->getId(), $storeId);
-            }
+            $this->subscriptionToggle->apply((int)$customer->getId(), (int)$storeId, (bool)$status);
         }
     }
 
