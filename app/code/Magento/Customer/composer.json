@@ -16,7 +16,6 @@
         "magento/module-eav": "*",
         "magento/module-integration": "*",
         "magento/module-media-storage": "*",
-        "magento/module-newsletter": "*",
         "magento/module-page-cache": "*",
         "magento/module-quote": "*",
         "magento/module-sales": "*",
