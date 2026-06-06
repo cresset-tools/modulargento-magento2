@@ -3,13 +3,18 @@
  * Copyright 2017 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Paypal\Model\InstantPurchase\Payflow\Pro;
+namespace Magento\PaypalInstantPurchase\Model\Payflow\Pro;
 
 use Magento\InstantPurchase\PaymentMethodIntegration\PaymentTokenFormatterInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 
 /**
- * Stored credit card formatter.
+ * Stored credit card formatter for PayPal Payflow Pro vault tokens.
+ *
+ * Lives in the Magento_PaypalInstantPurchase bridge (not Magento_Paypal) so that
+ * Magento_Paypal does not hard-depend on Magento_InstantPurchase: this class
+ * implements an InstantPurchase interface, so it must only be present when both
+ * modules are installed.
  */
 class TokenFormatter implements PaymentTokenFormatterInterface
 {

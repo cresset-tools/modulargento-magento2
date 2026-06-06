@@ -50,7 +50,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
     protected $_taxConfig;
 
     /**
-     * @var \Magento\GiftMessage\Helper\Message
+     * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
 
@@ -73,7 +73,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
      * @param \Magento\GiftMessage\Model\Save $giftMessageSave
      * @param \Magento\Tax\Model\Config $taxConfig
      * @param \Magento\Tax\Helper\Data $taxData
-     * @param \Magento\GiftMessage\Helper\Message $messageHelper
+     * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param StockRegistryInterface $stockRegistry
      * @param StockStateInterface $stockState
      * @param array $data
@@ -89,7 +89,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
         \Magento\GiftMessage\Model\Save $giftMessageSave,
         \Magento\Tax\Model\Config $taxConfig,
         \Magento\Tax\Helper\Data $taxData,
-        \Magento\GiftMessage\Helper\Message $messageHelper,
+        \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         StockRegistryInterface $stockRegistry,
         StockStateInterface $stockState,
         array $data = [],
