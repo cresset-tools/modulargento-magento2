@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\WishlistGraphQl\Model\Resolver\Type;
+namespace Magento\CatalogGraphQl\Model\Resolver\Type;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\Exception\LocalizedException;

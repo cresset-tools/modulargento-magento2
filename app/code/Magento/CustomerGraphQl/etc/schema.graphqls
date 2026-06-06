@@ -148,7 +148,6 @@ type Customer @doc(description: "Defines the customer name, addresses, and other
     date_of_birth: String @doc(description: "The customer's date of birth.")
     taxvat: String @doc(description: "The customer's Value-added tax (VAT) number (for corporate customers).")
     id: ID! @doc(description: "The unique ID assigned to the customer.")
-    is_subscribed: Boolean @doc(description: "Indicates whether the customer is subscribed to the company's newsletter.") @resolver(class: "\\Magento\\NewsletterGraphQl\\Model\\Resolver\\IsSubscribed")
     addresses: [CustomerAddress] @doc(description: "An array containing the customer's shipping and billing addresses.") @resolver(class: "\\Magento\\CustomerGraphQl\\Model\\Resolver\\CustomerAddresses")
     addressesV2(
         currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1."),
