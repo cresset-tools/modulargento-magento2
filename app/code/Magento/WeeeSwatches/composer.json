@@ -1,0 +1,26 @@
+{
+    "name": "magento/module-weee-swatches",
+    "description": "Adds Weee (Fixed Product Tax) data to swatch product listings — bridge between Magento_Weee and Magento_Swatches so each can be installed independently.",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-weee": "*",
+        "magento/module-swatches": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\WeeeSwatches\\": ""
+        }
+    }
+}
