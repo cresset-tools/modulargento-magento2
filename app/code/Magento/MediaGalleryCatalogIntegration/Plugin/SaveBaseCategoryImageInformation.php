@@ -14,7 +14,7 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem;
 use Magento\MediaGalleryApi\Api\DeleteAssetsByPathsInterface;
 use Magento\MediaGalleryApi\Api\GetAssetsByPathsInterface;
-use Magento\MediaGallerySynchronizationApi\Api\SynchronizeFilesInterface;
+use Magento\MediaGalleryApi\Model\Synchronization\SynchronizeFilesProviderInterface;
 use Magento\MediaGalleryUiApi\Api\ConfigInterface;
 
 /**
@@ -43,7 +43,7 @@ class SaveBaseCategoryImageInformation
     private $storage;
 
     /**
-     * @var SynchronizeFilesInterface
+     * @var SynchronizeFilesProviderInterface
      */
     private $synchronizeFiles;
 
@@ -57,7 +57,7 @@ class SaveBaseCategoryImageInformation
      * @param Filesystem $filesystem
      * @param GetAssetsByPathsInterface $getAssetsByPaths
      * @param Storage $storage
-     * @param SynchronizeFilesInterface $synchronizeFiles
+     * @param SynchronizeFilesProviderInterface $synchronizeFiles
      * @param ConfigInterface $config
      */
     public function __construct(
@@ -65,7 +65,7 @@ class SaveBaseCategoryImageInformation
         Filesystem $filesystem,
         GetAssetsByPathsInterface $getAssetsByPaths,
         Storage $storage,
-        SynchronizeFilesInterface $synchronizeFiles,
+        SynchronizeFilesProviderInterface $synchronizeFiles,
         ConfigInterface $config
     ) {
         $this->deleteAssetsByPaths = $deleteAssetsByPath;

@@ -9,6 +9,13 @@
     <preference for="Magento\MediaGallerySynchronizationApi\Api\SynchronizeInterface" type="Magento\MediaGallerySynchronization\Model\Synchronize"/>
     <preference for="Magento\MediaGallerySynchronizationApi\Model\FetchBatchesInterface" type="Magento\MediaGallerySynchronization\Model\FetchBatches"/>
     <preference for="Magento\MediaGallerySynchronizationApi\Api\SynchronizeFilesInterface" type="Magento\MediaGallerySynchronization\Model\SynchronizeFiles"/>
+    <preference for="Magento\MediaGalleryApi\Model\Synchronization\SynchronizeFilesProviderInterface" type="Magento\MediaGallerySynchronization\Model\SynchronizeFiles"/>
+    <!-- Create gallery thumbnails after files are imported. Declared here (not in
+         Magento_MediaGalleryUi) so it's absent when synchronization is removed;
+         the MediaGalleryUi\Plugin\CreateThumbnails class itself stays in MediaGalleryUi. -->
+    <type name="Magento\MediaGallerySynchronizationApi\Model\ImportFilesComposite">
+        <plugin name="createMediaGalleryThumbnails" type="Magento\MediaGalleryUi\Plugin\CreateThumbnails"/>
+    </type>
     <preference for="Magento\MediaGallerySynchronizationApi\Model\CreateAssetFromFileInterface" type="Magento\MediaGallerySynchronization\Model\CreateAssetFromFile"/>
     <type name="Magento\MediaGallerySynchronizationApi\Model\ImportFilesComposite">
         <arguments>
