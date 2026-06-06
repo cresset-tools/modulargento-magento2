@@ -21,6 +21,18 @@ class View extends \Magento\Framework\View\Element\Template
     protected $_template = 'Magento_Sales::order/view.phtml';
 
     /**
+     * Gift-message provider seam — a null no-op when Magento_GiftMessage is absent,
+     * so the order view template renders without a hard dependency on that module.
+     *
+     * @return \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
+     */
+    public function getGiftMessageProvider()
+    {
+        return \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface::class);
+    }
+
+    /**
      * Core registry
      *
      * @var \Magento\Framework\Registry

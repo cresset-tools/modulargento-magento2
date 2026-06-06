@@ -12,10 +12,11 @@ class Save extends \Magento\Sales\Controller\Adminhtml\Order\View\Giftmessage
      */
     public function execute()
     {
+        $saved = false;
         try {
-            $this->_getGiftmessageSaveModel()->setGiftmessages(
+            $saved = $this->_getGiftmessageSaveModel()->saveGiftmessagesInOrder(
                 $this->getRequest()->getParam('giftmessage')
-            )->saveAllInOrder();
+            );
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
@@ -23,7 +24,7 @@ class Save extends \Magento\Sales\Controller\Adminhtml\Order\View\Giftmessage
         }
 
         if ($this->getRequest()->getParam('type') == 'order_item') {
-            $this->getResponse()->setBody($this->_getGiftmessageSaveModel()->getSaved() ? 'YES' : 'NO');
+            $this->getResponse()->setBody($saved ? 'YES' : 'NO');
         } else {
             $this->getResponse()->setBody(__('You saved the gift card message.'));
         }

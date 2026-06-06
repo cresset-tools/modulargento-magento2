@@ -20,6 +20,18 @@ class AbstractItems extends \Magento\Framework\View\Element\Template
     public const DEFAULT_TYPE = 'default';
 
     /**
+     * Gift-message provider seam — a null no-op when Magento_GiftMessage is absent,
+     * so order/email item templates render without a hard dependency on that module.
+     *
+     * @return \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
+     */
+    public function getGiftMessageProvider()
+    {
+        return \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface::class);
+    }
+
+    /**
      * Retrieve item renderer block
      *
      * @param string $type

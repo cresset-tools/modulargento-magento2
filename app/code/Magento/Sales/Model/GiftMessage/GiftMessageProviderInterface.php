@@ -55,4 +55,52 @@ interface GiftMessageProviderInterface
      * @return mixed|null
      */
     public function getEntityModelByType($type);
+
+    /**
+     * Load the gift message attached to the given entity (order/item), or null.
+     *
+     * @param DataObject $entity
+     * @return \Magento\Framework\DataObject|null
+     */
+    public function getGiftMessageForEntity(DataObject $entity);
+
+    /**
+     * Escaped, line-broken gift-message text for the given entity ('' when none).
+     *
+     * @param DataObject $entity
+     * @return string
+     */
+    public function getEscapedGiftMessage(DataObject $entity);
+
+    /**
+     * Persist the posted gift messages against the current admin quote (no-op when unavailable).
+     *
+     * @param array $giftmessages
+     * @return void
+     */
+    public function saveGiftmessagesInQuote($giftmessages);
+
+    /**
+     * Persist the posted gift messages against the current admin order.
+     *
+     * @param array $giftmessages
+     * @return bool Whether anything was saved.
+     */
+    public function saveGiftmessagesInOrder($giftmessages);
+
+    /**
+     * Import the "gift message allowed" flags for quote items from an add-products payload.
+     *
+     * @param array $products
+     * @return void
+     */
+    public function importAllowQuoteItemsFromProducts($products);
+
+    /**
+     * Import the "gift message allowed" flags for quote items from an update-items payload.
+     *
+     * @param array $items
+     * @return void
+     */
+    public function importAllowQuoteItemsFromItems($items);
 }

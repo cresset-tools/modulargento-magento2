@@ -129,7 +129,12 @@ class Giftmessage extends \Magento\Backend\Block\Widget
     public function getEntity()
     {
         if ($this->_entity === null) {
-            $this->setEntity($this->_messageHelper->getEntityModelByType('order'));
+            $model = $this->_messageHelper->getEntityModelByType('order');
+            if ($model === null) {
+                // Gift messages unavailable (Magento_GiftMessage removed) — nothing to edit.
+                return null;
+            }
+            $this->setEntity($model);
             $this->getEntity()->load($this->getRequest()->getParam('entity'));
         }
         return $this->_entity;
@@ -277,10 +282,14 @@ class Giftmessage extends \Magento\Backend\Block\Widget
      */
     public function canDisplayGiftmessage()
     {
+        $entity = $this->getEntity();
+        if (!$entity) {
+            return false;
+        }
         return $this->_messageHelper->isMessagesAllowed(
             'order',
-            $this->getEntity(),
-            $this->getEntity()->getStoreId()
+            $entity,
+            $entity->getStoreId()
         );
     }
 }

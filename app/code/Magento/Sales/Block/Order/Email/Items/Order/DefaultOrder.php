@@ -17,6 +17,19 @@ use Magento\Sales\Model\Order\Item as OrderItem;
 class DefaultOrder extends \Magento\Framework\View\Element\Template
 {
     /**
+     * Gift-message provider seam — a null no-op when Magento_GiftMessage is absent,
+     * so email item renderer templates (incl. Bundle/Downloadable) render without a
+     * hard dependency on that module.
+     *
+     * @return \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
+     */
+    public function getGiftMessageProvider()
+    {
+        return \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface::class);
+    }
+
+    /**
      * Retrieve current order model instance
      *
      * @return \Magento\Sales\Model\Order
