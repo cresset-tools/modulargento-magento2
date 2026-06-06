@@ -22,7 +22,6 @@
         "magento/module-eav": "*",
         "magento/module-indexer": "*",
         "magento/module-media-storage": "*",
-        "magento/module-msrp": "*",
         "magento/module-page-cache": "*",
         "magento/module-product-alert": "*",
         "magento/module-quote": "*",

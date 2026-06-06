@@ -79,11 +79,6 @@ class Grouped extends \Magento\Catalog\Model\Product\Type\AbstractType
     protected $_appState;
 
     /**
-     * @var \Magento\Msrp\Helper\Data
-     */
-    protected $msrpData;
-
-    /**
      * @param \Magento\Catalog\Model\Product\Option $catalogProductOption
      * @param \Magento\Eav\Model\Config $eavConfig
      * @param \Magento\Catalog\Model\Product\Type $catalogProductType
@@ -97,7 +92,6 @@ class Grouped extends \Magento\Catalog\Model\Product\Type\AbstractType
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Catalog\Model\Product\Attribute\Source\Status $catalogProductStatus
      * @param \Magento\Framework\App\State $appState
-     * @param \Magento\Msrp\Helper\Data $msrpData
      * @param \Magento\Framework\Serialize\Serializer\Json|null $serializer
      * @param UploaderFactory|null $uploaderFactory
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -116,7 +110,6 @@ class Grouped extends \Magento\Catalog\Model\Product\Type\AbstractType
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Catalog\Model\Product\Attribute\Source\Status $catalogProductStatus,
         \Magento\Framework\App\State $appState,
-        \Magento\Msrp\Helper\Data $msrpData,
         ?\Magento\Framework\Serialize\Serializer\Json $serializer = null,
         ?UploaderFactory $uploaderFactory = null
     ) {
@@ -124,7 +117,6 @@ class Grouped extends \Magento\Catalog\Model\Product\Type\AbstractType
         $this->_storeManager = $storeManager;
         $this->_catalogProductStatus = $catalogProductStatus;
         $this->_appState = $appState;
-        $this->msrpData = $msrpData;
         parent::__construct(
             $catalogProductOption,
             $eavConfig,
