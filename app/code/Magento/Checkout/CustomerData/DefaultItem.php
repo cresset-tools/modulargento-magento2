@@ -20,7 +20,7 @@ class DefaultItem extends AbstractItem
     protected $imageHelper;
 
     /**
-     * @var \Magento\Msrp\Helper\Data
+     * @var \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface
      */
     protected $msrpHelper;
 
@@ -51,7 +51,7 @@ class DefaultItem extends AbstractItem
 
     /**
      * @param \Magento\Catalog\Helper\Image $imageHelper
-     * @param \Magento\Msrp\Helper\Data $msrpHelper
+     * @param \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface $msrpHelper
      * @param \Magento\Framework\UrlInterface $urlBuilder
      * @param \Magento\Catalog\Helper\Product\ConfigurationPool $configurationPool
      * @param \Magento\Checkout\Helper\Data $checkoutHelper
@@ -61,7 +61,7 @@ class DefaultItem extends AbstractItem
      */
     public function __construct(
         \Magento\Catalog\Helper\Image $imageHelper,
-        \Magento\Msrp\Helper\Data $msrpHelper,
+        \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface $msrpHelper,
         \Magento\Framework\UrlInterface $urlBuilder,
         \Magento\Catalog\Helper\Product\ConfigurationPool $configurationPool,
         \Magento\Checkout\Helper\Data $checkoutHelper,
