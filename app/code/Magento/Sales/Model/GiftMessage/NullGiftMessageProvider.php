@@ -23,4 +23,14 @@ class NullGiftMessageProvider implements GiftMessageProviderInterface
     {
         return null;
     }
+
+    public function getIsAllowedQuoteItem($item)
+    {
+        return false;
+    }
+
+    public function getEntityModelByType($type)
+    {
+        return null;
+    }
 }

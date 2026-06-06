@@ -9,6 +9,8 @@ namespace Magento\GiftMessage\Model;
 
 use Magento\Framework\DataObject;
 use Magento\GiftMessage\Helper\Message;
+use Magento\GiftMessage\Model\MessageFactory;
+use Magento\GiftMessage\Model\Save;
 use Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface;
 
 /**
@@ -18,9 +20,13 @@ class GiftMessageProvider implements GiftMessageProviderInterface
 {
     /**
      * @param Message $messageHelper
+     * @param Save $giftMessageSave
+     * @param MessageFactory $messageFactory
      */
     public function __construct(
-        private readonly Message $messageHelper
+        private readonly Message $messageHelper,
+        private readonly Save $giftMessageSave,
+        private readonly MessageFactory $messageFactory
     ) {
     }
 
@@ -38,5 +44,21 @@ class GiftMessageProvider implements GiftMessageProviderInterface
     public function getGiftMessage($messageId = null)
     {
         return $this->messageHelper->getGiftMessage($messageId);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIsAllowedQuoteItem($item)
+    {
+        return $this->giftMessageSave->getIsAllowedQuoteItem($item);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getEntityModelByType($type)
+    {
+        return $this->messageFactory->create()->getEntityModelByType($type);
     }
 }
