@@ -12,7 +12,6 @@ use Magento\Eav\Model\Config;
 use Magento\Eav\Model\Entity\Attribute\Set;
 use Magento\Framework\App\CacheInterface;
 use Magento\Store\Model\StoreManager;
-use Magento\Swatches\Model\Swatch;
 
 /**
  * Generate attributes default attribute set
@@ -156,7 +155,9 @@ class EavVariationsFixture extends Fixture
             'is_user_defined' => 1,
         ];
 
-        $data['swatch_input_type'] = Swatch::SWATCH_INPUT_TYPE_VISUAL;
+        // 'visual' == Magento\Swatches\Model\Swatch::SWATCH_INPUT_TYPE_VISUAL — inlined so
+        // this fixture carries no hard reference to Magento_Swatches (removable set).
+        $data['swatch_input_type'] = 'visual';
         $data['swatchvisual']['value'] = array_reduce(
             range(1, $optionCount),
             function ($values, $index) use ($optionCount) {
