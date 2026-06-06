@@ -6,7 +6,7 @@
 namespace Magento\Setup\Fixtures\AttributeSet;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Swatches\Model\Swatch;
+use Magento\Framework\App\ObjectManager;
 
 /**
  * Generates data for creating Visual Swatch attributes of "image" and "color" types.
@@ -35,7 +35,17 @@ class SwatchesGenerator
     const GENERATED_SWATCH_TMP_NAME = 'tmp_swatch.jpg';
 
     /**
-     * @var \Magento\Swatches\Helper\Media
+     * Visual swatch input type — value of Magento\Swatches\Model\Swatch::SWATCH_INPUT_TYPE_VISUAL.
+     *
+     * Inlined so this fixture carries no hard reference to Magento_Swatches and the
+     * swatches set can be removed.
+     *
+     * @var string
+     */
+    private const SWATCH_INPUT_TYPE_VISUAL = 'visual';
+
+    /**
+     * @var \Magento\Swatches\Helper\Media|null
      */
     private $swatchHelper;
 
@@ -50,15 +60,30 @@ class SwatchesGenerator
     private $imagesGenerator;
 
     /**
-     * @param \Magento\Swatches\Helper\Media $swatchHelper
      * @param \Magento\Setup\Fixtures\ImagesGenerator\ImagesGeneratorFactory $imagesGeneratorFactory
      */
     public function __construct(
-        \Magento\Swatches\Helper\Media $swatchHelper,
         \Magento\Setup\Fixtures\ImagesGenerator\ImagesGeneratorFactory $imagesGeneratorFactory
     ) {
-        $this->swatchHelper = $swatchHelper;
         $this->imagesGeneratorFactory = $imagesGeneratorFactory;
+    }
+
+    /**
+     * Resolve the Swatches media helper lazily.
+     *
+     * Generating visual-swatch *image* data requires Magento_Swatches; the helper is
+     * resolved on demand (rather than via the constructor) so this performance-fixture
+     * class compiles and loads even when the swatches set has been removed.
+     *
+     * @return \Magento\Swatches\Helper\Media
+     */
+    private function getSwatchHelper()
+    {
+        if ($this->swatchHelper === null) {
+            $this->swatchHelper = ObjectManager::getInstance()
+                ->get(\Magento\Swatches\Helper\Media::class);
+        }
+        return $this->swatchHelper;
     }
 
     /**
@@ -75,7 +100,7 @@ class SwatchesGenerator
             return [];
         }
 
-        $attribute['swatch_input_type'] = Swatch::SWATCH_INPUT_TYPE_VISUAL;
+        $attribute['swatch_input_type'] = self::SWATCH_INPUT_TYPE_VISUAL;
         $attribute['swatchvisual']['value'] = array_reduce(
             range(1, $optionCount),
             function ($values, $index) use ($optionCount, $data, $type) {
@@ -137,8 +162,9 @@ class SwatchesGenerator
             'image-name' => $imageName
         ]);
 
-        $imagePath = substr($this->swatchHelper->moveImageFromTmp($imageName), 1);
-        $this->swatchHelper->generateSwatchVariations($imagePath);
+        $swatchHelper = $this->getSwatchHelper();
+        $imagePath = substr($swatchHelper->moveImageFromTmp($imageName), 1);
+        $swatchHelper->generateSwatchVariations($imagePath);
 
         return $imagePath;
     }
