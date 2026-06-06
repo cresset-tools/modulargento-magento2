@@ -50,7 +50,10 @@ class InitializeMsrpAttributes implements DataPatchInterface, PatchVersionInterf
         $productTypes = [
             \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE,
             \Magento\Catalog\Model\Product\Type::TYPE_VIRTUAL,
-            \Magento\Downloadable\Model\Product\Type::TYPE_DOWNLOADABLE,
+            // 'downloadable' == Magento\Downloadable\Model\Product\Type::TYPE_DOWNLOADABLE —
+            // inlined so this data patch carries no hard reference to Magento_Downloadable
+            // (removable set). Listing the type when the module is absent is harmless.
+            'downloadable',
             \Magento\Catalog\Model\Product\Type::TYPE_BUNDLE,
         ];
         $productTypes = join(',', $productTypes);

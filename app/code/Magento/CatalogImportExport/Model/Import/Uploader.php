@@ -13,7 +13,6 @@ use Magento\Framework\Exception\ValidatorException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\TargetDirectory;
 use Magento\Framework\Filesystem\DriverPool;
-use Magento\Downloadable\Model\Url\DomainValidator;
 
 /**
  * Import entity product model
