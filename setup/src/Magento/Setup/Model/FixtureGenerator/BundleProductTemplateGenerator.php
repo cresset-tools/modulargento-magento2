@@ -6,13 +6,12 @@
 
 namespace Magento\Setup\Model\FixtureGenerator;
 
-use Magento\Bundle\Api\Data\LinkInterfaceFactory;
-use Magento\Bundle\Api\Data\OptionInterfaceFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\App\ObjectManager;
 
 /**
  * Bundle product template generator. Return newly created bundle product for specified attribute set
@@ -31,31 +30,53 @@ class BundleProductTemplateGenerator implements TemplateEntityGeneratorInterface
     private $productFactory;
 
     /**
-     * @var OptionInterfaceFactory
+     * @var \Magento\Bundle\Api\Data\OptionInterfaceFactory|null
      */
     private $optionFactory;
 
     /**
-     * @var LinkInterfaceFactory
+     * @var \Magento\Bundle\Api\Data\LinkInterfaceFactory|null
      */
     private $linkFactory;
 
     /**
      * @param ProductFactory $productFactory
      * @param array $fixture
-     * @param OptionInterfaceFactory $optionFactory
-     * @param LinkInterfaceFactory $linkFactory
      */
     public function __construct(
         ProductFactory $productFactory,
-        array $fixture,
-        OptionInterfaceFactory $optionFactory,
-        LinkInterfaceFactory $linkFactory
+        array $fixture
     ) {
         $this->fixture = $fixture;
         $this->productFactory = $productFactory;
-        $this->optionFactory = $optionFactory;
-        $this->linkFactory = $linkFactory;
+    }
+
+    /**
+     * Bundle option/link factories, resolved lazily — only used while generating bundle
+     * fixtures, which cannot happen when Magento_Bundle is removed, so the (removable)
+     * Bundle\Api classes are never referenced in that case.
+     *
+     * @return \Magento\Bundle\Api\Data\OptionInterfaceFactory
+     */
+    private function getOptionFactory()
+    {
+        if ($this->optionFactory === null) {
+            $this->optionFactory = ObjectManager::getInstance()
+                ->get(\Magento\Bundle\Api\Data\OptionInterfaceFactory::class);
+        }
+        return $this->optionFactory;
+    }
+
+    /**
+     * @return \Magento\Bundle\Api\Data\LinkInterfaceFactory
+     */
+    private function getLinkFactory()
+    {
+        if ($this->linkFactory === null) {
+            $this->linkFactory = ObjectManager::getInstance()
+                ->get(\Magento\Bundle\Api\Data\LinkInterfaceFactory::class);
+        }
+        return $this->linkFactory;
     }
 
     /**
@@ -99,7 +120,7 @@ class BundleProductTemplateGenerator implements TemplateEntityGeneratorInterface
                 'description' => 'description',
                 'short_description' => 'short description',
                 'tax_class_id' => 2, //'taxable goods',
-                'price_type' => \Magento\Bundle\Model\Product\Price::PRICE_TYPE_FIXED,
+                'price_type' => 1, // Magento\Bundle\Model\Product\Price::PRICE_TYPE_FIXED — inlined (Bundle removable)
                 'price_view' => 1,
                 'stock_data' => [
                     'use_config_manage_stock' => 1,
@@ -116,7 +137,7 @@ class BundleProductTemplateGenerator implements TemplateEntityGeneratorInterface
         $bundleProductOptions = [];
         $variationN = 0;
         for ($i = 1; $i <= $bundleOptions; $i++) {
-            $option = $this->optionFactory->create(['data' => [
+            $option = $this->getOptionFactory()->create(['data' => [
                 'title' => 'Bundle Product Items ' . $i,
                 'default_title' => 'Bundle Product Items ' . $i,
                 'type' => 'select',
@@ -130,7 +151,7 @@ class BundleProductTemplateGenerator implements TemplateEntityGeneratorInterface
             $links = [];
             for ($linkN = 1; $linkN <= $bundleProductsPerOption; $linkN++) {
                 $variationN++;
-                $link = $this->linkFactory->create(['data' => [
+                $link = $this->getLinkFactory()->create(['data' => [
                     'sku' => sprintf($bundleVariationSkuPattern, $variationN),
                     'qty' => 1,
                     'can_change_qty' => 1,
