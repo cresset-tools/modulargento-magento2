@@ -61,4 +61,53 @@ class GiftMessageProvider implements GiftMessageProviderInterface
     {
         return $this->messageFactory->create()->getEntityModelByType($type);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getGiftMessageForEntity(DataObject $entity)
+    {
+        return $this->messageHelper->getGiftMessageForEntity($entity);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getEscapedGiftMessage(DataObject $entity)
+    {
+        return $this->messageHelper->getEscapedGiftMessage($entity);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function saveGiftmessagesInQuote($giftmessages)
+    {
+        $this->giftMessageSave->setGiftmessages($giftmessages)->saveAllInQuote();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function saveGiftmessagesInOrder($giftmessages)
+    {
+        $this->giftMessageSave->setGiftmessages($giftmessages)->saveAllInOrder();
+        return (bool)$this->giftMessageSave->getSaved();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function importAllowQuoteItemsFromProducts($products)
+    {
+        $this->giftMessageSave->importAllowQuoteItemsFromProducts($products);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function importAllowQuoteItemsFromItems($items)
+    {
+        $this->giftMessageSave->importAllowQuoteItemsFromItems($items);
+    }
 }

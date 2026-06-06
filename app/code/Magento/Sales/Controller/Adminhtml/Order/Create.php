@@ -109,13 +109,13 @@ abstract class Create extends \Magento\Backend\App\Action
     }
 
     /**
-     * Retrieve gift message save model
+     * Retrieve gift message provider seam (a null no-op when Magento_GiftMessage is absent)
      *
-     * @return \Magento\GiftMessage\Model\Save
+     * @return \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected function _getGiftmessageSaveModel()
     {
-        return $this->_objectManager->get(\Magento\GiftMessage\Model\Save::class);
+        return $this->_objectManager->get(\Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface::class);
     }
 
     /**
@@ -366,7 +366,7 @@ abstract class Create extends \Magento\Backend\App\Action
          */
         $giftmessages = $this->getRequest()->getPost('giftmessage');
         if ($giftmessages) {
-            $this->_getGiftmessageSaveModel()->setGiftmessages($giftmessages)->saveAllInQuote();
+            $this->_getGiftmessageSaveModel()->saveGiftmessagesInQuote($giftmessages);
         }
 
         /**

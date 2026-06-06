@@ -12,7 +12,7 @@
 <?php $items = array_merge([$parentItem->getOrderItem()], $parentItem->getOrderItem()->getChildrenItems()) ?>
 <?php $shipItems = $block->getChildren($parentItem) ?>
 
-<?php if ($block->getItemOptions() || $parentItem->getDescription() || $this->helper(Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order_item', $parentItem) && $parentItem->getGiftMessageId()) : ?>
+<?php if ($block->getItemOptions() || $parentItem->getDescription() || $block->getGiftMessageProvider()->isMessagesAllowed('order_item', $parentItem) && $parentItem->getGiftMessageId()) : ?>
     <?php $_showlastRow = true ?>
 <?php else : ?>
     <?php $_showlastRow = false ?>

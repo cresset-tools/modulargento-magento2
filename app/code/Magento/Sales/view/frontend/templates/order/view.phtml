@@ -19,13 +19,15 @@
 
     <?= $block->getChildHtml('order_items') ?>
 
-    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order', $_order)
+    <?php $giftMessageProvider = $block->getGiftMessageProvider(); ?>
+    <?php if ($giftMessageProvider
+        && $giftMessageProvider->isMessagesAllowed('order', $_order)
         && $_order->getGiftMessageId()
     ) : ?>
     <div class="block block-order-details-gift-message">
         <div class="block-title"><strong><?= $block->escapeHtml(__('Gift Message for This Order')) ?></strong></div>
         <?php
-        $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)->getGiftMessageForEntity($_order);
+        $_giftMessage = $giftMessageProvider->getGiftMessageForEntity($_order);
         ?>
         <div class="block-content">
             <dl class="item-options">
@@ -33,7 +35,7 @@
                 <dt class="item-recipient"><strong class="label"><?= $block->escapeHtml(__('To')) ?></strong><?= $block->escapeHtml($_giftMessage->getRecipient()) ?></dt>
                 <dd class="item-message">
                     <?= /* @noEscape */
-                    $this->helper(\Magento\GiftMessage\Helper\Message::class)->getEscapedGiftMessage($_order) ?>
+                    $giftMessageProvider->getEscapedGiftMessage($_order) ?>
                 </dd>
             </dl>
         </div>

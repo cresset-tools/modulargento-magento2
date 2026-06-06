@@ -32,7 +32,7 @@
         </dl>
         <?php endif; ?>
         <?= $block->escapeHtml($_item->getDescription()) ?>
-        <?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper(Magento\GiftMessage\Helper\Message::class)->getGiftMessage($_item->getGiftMessageId())) : ?>
+        <?php if ($_item->getGiftMessageId() && $_giftMessage = $block->getGiftMessageProvider()->getGiftMessage($_item->getGiftMessageId())) : ?>
             <table class="message-gift">
                 <tr>
                     <td>
