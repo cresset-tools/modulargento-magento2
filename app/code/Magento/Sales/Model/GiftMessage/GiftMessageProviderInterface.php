@@ -35,4 +35,24 @@ interface GiftMessageProviderInterface
      * @return \Magento\Framework\DataObject|null
      */
     public function getGiftMessage($messageId = null);
+
+    /**
+     * Whether the given quote item is allowed to carry a gift message.
+     *
+     * @param \Magento\Framework\DataObject $item
+     * @return bool
+     */
+    public function getIsAllowedQuoteItem($item);
+
+    /**
+     * Create the gift-message entity model for the given entity type (e.g. 'order').
+     *
+     * Returns null when gift messages are unavailable. The concrete return type is
+     * intentionally left unbound so Magento_Sales carries no reference to
+     * Magento_GiftMessage classes.
+     *
+     * @param string $type
+     * @return mixed|null
+     */
+    public function getEntityModelByType($type);
 }

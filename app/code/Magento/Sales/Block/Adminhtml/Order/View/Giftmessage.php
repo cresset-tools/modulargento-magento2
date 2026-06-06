@@ -26,32 +26,24 @@ class Giftmessage extends \Magento\Backend\Block\Widget
     protected $_coreRegistry = null;
 
     /**
-     * @var \Magento\GiftMessage\Model\MessageFactory
-     */
-    protected $_messageFactory;
-
-    /**
      * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\GiftMessage\Model\MessageFactory $messageFactory
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
-        \Magento\GiftMessage\Model\MessageFactory $messageFactory,
         \Magento\Framework\Registry $registry,
         \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         array $data = []
     ) {
         $this->_messageHelper = $messageHelper;
         $this->_coreRegistry = $registry;
-        $this->_messageFactory = $messageFactory;
         parent::__construct($context, $data);
     }
 
@@ -137,7 +129,7 @@ class Giftmessage extends \Magento\Backend\Block\Widget
     public function getEntity()
     {
         if ($this->_entity === null) {
-            $this->setEntity($this->_messageFactory->create()->getEntityModelByType('order'));
+            $this->setEntity($this->_messageHelper->getEntityModelByType('order'));
             $this->getEntity()->load($this->getRequest()->getParam('entity'));
         }
         return $this->_entity;
