@@ -11,7 +11,6 @@
         "magento/module-config": "*",
         "magento/module-store": "*",
         "magento/module-ui": "*",
-        "magento/module-release-notification": "*",
         "magento/module-csp": "*"
     },
     "type": "magento2-module",
