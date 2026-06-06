@@ -16,13 +16,14 @@ use Magento\Framework\Stdlib\DateTime\DateTimeFactory;
 use Magento\MediaGalleryApi\Api\GetAssetsByPathsInterface;
 use Magento\MediaGallerySynchronizationApi\Model\ImportFilesInterface;
 use Magento\MediaGallerySynchronizationApi\Api\SynchronizeFilesInterface;
+use Magento\MediaGalleryApi\Model\Synchronization\SynchronizeFilesProviderInterface;
 use Magento\MediaGallerySynchronization\Model\Filesystem\GetFileInfo;
 use Psr\Log\LoggerInterface;
 
 /**
  * Synchronize files in media storage and media assets database records
  */
-class SynchronizeFiles implements SynchronizeFilesInterface
+class SynchronizeFiles implements SynchronizeFilesInterface, SynchronizeFilesProviderInterface
 {
     /**
      * Date format

@@ -38,7 +38,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * Message helper
      *
-     * @var \Magento\GiftMessage\Helper\Message
+     * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
 
@@ -59,7 +59,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
      * @param \Magento\Backend\Model\Session\Quote $sessionQuote
-     * @param \Magento\GiftMessage\Helper\Message $messageHelper
+     * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Magento\Customer\Helper\View $customerViewHelper
      * @param array $data
@@ -69,7 +69,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Backend\Model\Session\Quote $sessionQuote,
-        \Magento\GiftMessage\Helper\Message $messageHelper,
+        \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Magento\Customer\Helper\View $customerViewHelper,
         array $data = []

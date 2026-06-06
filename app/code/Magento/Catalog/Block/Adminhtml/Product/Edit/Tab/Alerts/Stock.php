@@ -24,25 +24,25 @@ class Stock extends Extended
     protected $moduleManager;
 
     /**
-     * @var \Magento\ProductAlert\Model\StockFactory
+     * @var AlertCustomerCollectionProviderInterface
      */
-    protected $_stockFactory;
+    protected $alertCustomerProvider;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
-     * @param \Magento\ProductAlert\Model\StockFactory $stockFactory
+     * @param AlertCustomerCollectionProviderInterface $alertCustomerProvider
      * @param \Magento\Framework\Module\Manager $moduleManager
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
-        \Magento\ProductAlert\Model\StockFactory $stockFactory,
+        AlertCustomerCollectionProviderInterface $alertCustomerProvider,
         \Magento\Framework\Module\Manager $moduleManager,
         array $data = []
     ) {
-        $this->_stockFactory = $stockFactory;
+        $this->alertCustomerProvider = $alertCustomerProvider;
         $this->moduleManager = $moduleManager;
         parent::__construct($context, $backendHelper, $data);
     }
@@ -77,8 +77,10 @@ class Stock extends Extended
             $websiteId = $this->_storeManager->getStore($store)->getWebsiteId();
         }
         if ($this->moduleManager->isEnabled('Magento_ProductAlert')) {
-            $collection = $this->_stockFactory->create()->getCustomerCollection()->join($productId, $websiteId);
-            $this->setCollection($collection);
+            $collection = $this->alertCustomerProvider->getStockAlertCollection((int)$productId, (int)$websiteId);
+            if ($collection !== null) {
+                $this->setCollection($collection);
+            }
         }
         return parent::_prepareCollection();
     }

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright 2025 Adobe
+ * All Rights Reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Edit\Tab\Alerts\AlertCustomerCollectionProviderInterface" type="Magento\ProductAlert\Block\Adminhtml\Product\Edit\Tab\Alerts\AlertCustomerCollectionProvider"/>
+</config>
