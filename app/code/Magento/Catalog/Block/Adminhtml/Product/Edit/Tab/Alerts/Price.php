@@ -24,25 +24,25 @@ class Price extends Extended
     protected $moduleManager;
 
     /**
-     * @var \Magento\ProductAlert\Model\PriceFactory
+     * @var AlertCustomerCollectionProviderInterface
      */
-    protected $_priceFactory;
+    protected $alertCustomerProvider;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
-     * @param \Magento\ProductAlert\Model\PriceFactory $priceFactory
+     * @param AlertCustomerCollectionProviderInterface $alertCustomerProvider
      * @param \Magento\Framework\Module\Manager $moduleManager
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
-        \Magento\ProductAlert\Model\PriceFactory $priceFactory,
+        AlertCustomerCollectionProviderInterface $alertCustomerProvider,
         \Magento\Framework\Module\Manager $moduleManager,
         array $data = []
     ) {
-        $this->_priceFactory = $priceFactory;
+        $this->alertCustomerProvider = $alertCustomerProvider;
         $this->moduleManager = $moduleManager;
         parent::__construct($context, $backendHelper, $data);
     }
@@ -77,8 +77,10 @@ class Price extends Extended
             $websiteId = $this->_storeManager->getStore($store)->getWebsiteId();
         }
         if ($this->moduleManager->isEnabled('Magento_ProductAlert')) {
-            $collection = $this->_priceFactory->create()->getCustomerCollection()->join($productId, $websiteId);
-            $this->setCollection($collection);
+            $collection = $this->alertCustomerProvider->getPriceAlertCollection((int)$productId, (int)$websiteId);
+            if ($collection !== null) {
+                $this->setCollection($collection);
+            }
         }
         return parent::_prepareCollection();
     }
