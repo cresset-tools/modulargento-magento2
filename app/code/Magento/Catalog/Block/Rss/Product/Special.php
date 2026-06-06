@@ -51,7 +51,7 @@ class Special extends \Magento\Framework\View\Element\AbstractBlock implements D
     protected $rssUrlBuilder;
 
     /**
-     * @var \Magento\Msrp\Helper\Data
+     * @var \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface
      */
     protected $msrpHelper;
 
@@ -65,7 +65,7 @@ class Special extends \Magento\Framework\View\Element\AbstractBlock implements D
      * @param \Magento\Framework\App\Http\Context $httpContext
      * @param \Magento\Catalog\Helper\Image $imageHelper
      * @param \Magento\Catalog\Helper\Output $outputHelper
-     * @param \Magento\Msrp\Helper\Data $msrpHelper
+     * @param \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface $msrpHelper
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
      * @param \Magento\Catalog\Model\Rss\Product\Special $rssModel
      * @param \Magento\Framework\App\Rss\UrlBuilderInterface $rssUrlBuilder
@@ -78,7 +78,7 @@ class Special extends \Magento\Framework\View\Element\AbstractBlock implements D
         \Magento\Framework\App\Http\Context $httpContext,
         \Magento\Catalog\Helper\Image $imageHelper,
         \Magento\Catalog\Helper\Output $outputHelper,
-        \Magento\Msrp\Helper\Data $msrpHelper,
+        \Magento\Catalog\Model\Product\MsrpDisplayProviderInterface $msrpHelper,
         \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
         \Magento\Catalog\Model\Rss\Product\Special $rssModel,
         \Magento\Framework\App\Rss\UrlBuilderInterface $rssUrlBuilder,
