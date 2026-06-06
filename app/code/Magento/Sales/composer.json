@@ -17,7 +17,6 @@
         "magento/module-customer": "*",
         "magento/module-directory": "*",
         "magento/module-eav": "*",
-        "magento/module-gift-message": "*",
         "magento/module-media-storage": "*",
         "magento/module-payment": "*",
         "magento/module-quote": "*",

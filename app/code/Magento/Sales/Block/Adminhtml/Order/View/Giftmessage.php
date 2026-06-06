@@ -31,7 +31,7 @@ class Giftmessage extends \Magento\Backend\Block\Widget
     protected $_messageFactory;
 
     /**
-     * @var \Magento\GiftMessage\Helper\Message
+     * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
 
@@ -39,14 +39,14 @@ class Giftmessage extends \Magento\Backend\Block\Widget
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\GiftMessage\Model\MessageFactory $messageFactory
      * @param \Magento\Framework\Registry $registry
-     * @param \Magento\GiftMessage\Helper\Message $messageHelper
+     * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\GiftMessage\Model\MessageFactory $messageFactory,
         \Magento\Framework\Registry $registry,
-        \Magento\GiftMessage\Helper\Message $messageHelper,
+        \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         array $data = []
     ) {
         $this->_messageHelper = $messageHelper;

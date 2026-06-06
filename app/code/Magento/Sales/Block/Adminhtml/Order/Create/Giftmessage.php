@@ -21,7 +21,7 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
     protected $_giftMessageSave;
 
     /**
-     * @var \Magento\GiftMessage\Helper\Message
+     * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
 
@@ -31,7 +31,7 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
      * @param \Magento\GiftMessage\Model\Save $giftMessageSave
-     * @param \Magento\GiftMessage\Helper\Message $messageHelper
+     * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param array $data
      */
     public function __construct(
@@ -40,7 +40,7 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
         \Magento\GiftMessage\Model\Save $giftMessageSave,
-        \Magento\GiftMessage\Helper\Message $messageHelper,
+        \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         array $data = []
     ) {
         $this->_messageHelper = $messageHelper;
