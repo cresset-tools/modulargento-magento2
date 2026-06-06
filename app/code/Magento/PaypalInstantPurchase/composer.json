@@ -1,0 +1,27 @@
+{
+    "name": "magento/module-paypal-instant-purchase",
+    "description": "Instant Purchase token formatting for PayPal Payflow Pro vault — bridge between Magento_Paypal and Magento_InstantPurchase so each can be installed independently.",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-instant-purchase": "*",
+        "magento/module-paypal": "*",
+        "magento/module-vault": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\PaypalInstantPurchase\\": ""
+        }
+    }
+}
