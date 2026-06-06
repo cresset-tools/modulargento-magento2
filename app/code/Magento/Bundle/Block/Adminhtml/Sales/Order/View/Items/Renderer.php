@@ -28,7 +28,7 @@ class Renderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\
      * @param \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry
      * @param \Magento\CatalogInventory\Api\StockConfigurationInterface $stockConfiguration
      * @param \Magento\Framework\Registry $registry
-     * @param \Magento\GiftMessage\Helper\Message $messageHelper
+     * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param \Magento\Checkout\Helper\Data $checkoutHelper
      * @param array $data
      * @param \Magento\Framework\Serialize\Serializer\Json $serializer
@@ -39,7 +39,7 @@ class Renderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry,
         \Magento\CatalogInventory\Api\StockConfigurationInterface $stockConfiguration,
         \Magento\Framework\Registry $registry,
-        \Magento\GiftMessage\Helper\Message $messageHelper,
+        \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         \Magento\Checkout\Helper\Data $checkoutHelper,
         array $data = [],
         ?Json $serializer = null,

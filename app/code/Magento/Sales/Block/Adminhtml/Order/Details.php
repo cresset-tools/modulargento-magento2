@@ -7,7 +7,7 @@ namespace Magento\Sales\Block\Adminhtml\Order;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\View\Element\Template;
-use Magento\GiftMessage\Helper\Message as GiftMessageHelper;
+use Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface as GiftMessageHelper;
 
 /**
  * Order Details
