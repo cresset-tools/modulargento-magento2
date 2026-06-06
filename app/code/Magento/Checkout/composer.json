@@ -14,7 +14,6 @@
         "magento/module-customer": "*",
         "magento/module-directory": "*",
         "magento/module-eav": "*",
-        "magento/module-msrp": "*",
         "magento/module-page-cache": "*",
         "magento/module-payment": "*",
         "magento/module-quote": "*",
