@@ -12,7 +12,7 @@
 <?php $parentItem = $block->getItem() ?>
 <?php $items = array_merge([$parentItem], $parentItem->getChildrenItems()); ?>
 
-<?php if ($block->getItemOptions() || $_item->getDescription() || $this->helper(Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order_item', $_item) && $_item->getGiftMessageId()) : ?>
+<?php if ($block->getItemOptions() || $_item->getDescription() || $block->getGiftMessageProvider()->isMessagesAllowed('order_item', $_item) && $_item->getGiftMessageId()) : ?>
     <?php $_showlastRow = true ?>
 <?php else : ?>
     <?php $_showlastRow = false ?>
@@ -67,7 +67,7 @@
                 <?php endforeach; ?>
             </dl>
             <?php endif; ?>
-            <?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper(Magento\GiftMessage\Helper\Message::class)->getGiftMessage($_item->getGiftMessageId())) : ?>
+            <?php if ($_item->getGiftMessageId() && $_giftMessage = $block->getGiftMessageProvider()->getGiftMessage($_item->getGiftMessageId())) : ?>
                 <table class="message-gift">
                     <tr>
                         <td>

@@ -31,6 +31,19 @@ class DefaultRenderer extends \Magento\Framework\View\Element\Template
     protected $string;
 
     /**
+     * Gift-message provider seam — a null no-op when Magento_GiftMessage is absent,
+     * so order item renderer templates (incl. Bundle/Downloadable) render without a
+     * hard dependency on that module.
+     *
+     * @return \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
+     */
+    public function getGiftMessageProvider()
+    {
+        return \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface::class);
+    }
+
+    /**
      * @var OptionFactory
      */
     protected $_productOptionFactory;

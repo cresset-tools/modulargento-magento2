@@ -23,4 +23,41 @@ class NullGiftMessageProvider implements GiftMessageProviderInterface
     {
         return null;
     }
+
+    public function getIsAllowedQuoteItem($item)
+    {
+        return false;
+    }
+
+    public function getEntityModelByType($type)
+    {
+        return null;
+    }
+
+    public function getGiftMessageForEntity(DataObject $entity)
+    {
+        return null;
+    }
+
+    public function getEscapedGiftMessage(DataObject $entity)
+    {
+        return '';
+    }
+
+    public function saveGiftmessagesInQuote($giftmessages)
+    {
+    }
+
+    public function saveGiftmessagesInOrder($giftmessages)
+    {
+        return false;
+    }
+
+    public function importAllowQuoteItemsFromProducts($products)
+    {
+    }
+
+    public function importAllowQuoteItemsFromItems($items)
+    {
+    }
 }

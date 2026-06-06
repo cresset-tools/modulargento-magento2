@@ -40,11 +40,6 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
     private $customerWishlistsProvider;
 
     /**
-     * @var \Magento\GiftMessage\Model\Save
-     */
-    protected $_giftMessageSave;
-
-    /**
      * @var \Magento\Tax\Model\Config
      */
     protected $_taxConfig;
@@ -70,7 +65,6 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
      * @param CustomerWishlistsProviderInterface $customerWishlistsProvider
-     * @param \Magento\GiftMessage\Model\Save $giftMessageSave
      * @param \Magento\Tax\Model\Config $taxConfig
      * @param \Magento\Tax\Helper\Data $taxData
      * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
@@ -86,7 +80,6 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
         CustomerWishlistsProviderInterface $customerWishlistsProvider,
-        \Magento\GiftMessage\Model\Save $giftMessageSave,
         \Magento\Tax\Model\Config $taxConfig,
         \Magento\Tax\Helper\Data $taxData,
         \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
@@ -97,7 +90,6 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
     ) {
         $this->_messageHelper = $messageHelper;
         $this->customerWishlistsProvider = $customerWishlistsProvider;
-        $this->_giftMessageSave = $giftMessageSave;
         $this->_taxConfig = $taxConfig;
         $this->_taxData = $taxData;
         $this->stockRegistry = $stockRegistry;
@@ -242,7 +234,7 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
      */
     public function isAllowedForGiftMessage($item)
     {
-        return $this->_giftMessageSave->getIsAllowedQuoteItem($item);
+        return $this->_messageHelper->getIsAllowedQuoteItem($item);
     }
 
     /**
