@@ -19,3 +19,7 @@ enum SubscriptionStatusesEnum @doc(description: "Indicates the status of the req
 type StoreConfig {
     newsletter_enabled: Boolean! @doc(description: "Indicates whether newsletters are enabled.")
 }
+
+type Customer {
+    is_subscribed: Boolean @doc(description: "Indicates whether the customer is subscribed to the company's newsletter.") @resolver(class: "Magento\\NewsletterGraphQl\\Model\\Resolver\\IsSubscribed")
+}
