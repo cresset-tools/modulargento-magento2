@@ -36,12 +36,12 @@
             <?= $block->getChildHtml('order_totals') ?>
         </tfoot>
     </table>
-    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)
-            ->isMessagesAllowed('order', $_order, $_order->getStore())
+    <?php $giftMessageProvider = $block->getGiftMessageProvider(); ?>
+    <?php if ($giftMessageProvider
+            && $giftMessageProvider->isMessagesAllowed('order', $_order, $_order->getStore())
         && $_order->getGiftMessageId()
     ) : ?>
-        <?php $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)
-            ->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php $_giftMessage = $giftMessageProvider->getGiftMessage($_order->getGiftMessageId()); ?>
         <?php if ($_giftMessage) : ?>
             <br />
             <table class="message-gift">

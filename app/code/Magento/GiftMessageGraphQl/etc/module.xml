@@ -10,6 +10,7 @@
     <module name="Magento_GiftMessageGraphQl">
         <sequence>
             <module name="Magento_GiftMessage"/>
+            <module name="Magento_QuoteGraphQl"/>
         </sequence>
     </module>
 </config>

@@ -16,11 +16,6 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCreate
 {
     /**
-     * @var \Magento\GiftMessage\Model\Save
-     */
-    protected $_giftMessageSave;
-
-    /**
      * @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface
      */
     protected $_messageHelper;
@@ -30,7 +25,6 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
      * @param \Magento\Backend\Model\Session\Quote $sessionQuote
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
-     * @param \Magento\GiftMessage\Model\Save $giftMessageSave
      * @param \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper
      * @param array $data
      */
@@ -39,12 +33,10 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
         \Magento\Backend\Model\Session\Quote $sessionQuote,
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
-        \Magento\GiftMessage\Model\Save $giftMessageSave,
         \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $messageHelper,
         array $data = []
     ) {
         $this->_messageHelper = $messageHelper;
-        $this->_giftMessageSave = $giftMessageSave;
         $data['giftMessageHelper'] = $messageHelper;
         parent::__construct($context, $sessionQuote, $orderCreate, $priceCurrency, $data);
     }
@@ -80,7 +72,7 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
         $allItems = $this->getQuote()->getAllItems();
 
         foreach ($allItems as $item) {
-            if ($this->_getGiftmessageSaveModel()->getIsAllowedQuoteItem(
+            if ($this->_messageHelper->getIsAllowedQuoteItem(
                 $item
             ) && $this->_messageHelper->isMessagesAllowed(
                 'item',
@@ -98,15 +90,5 @@ class Giftmessage extends \Magento\Sales\Block\Adminhtml\Order\Create\AbstractCr
         }
 
         return false;
-    }
-
-    /**
-     * Retrieve gift message save model
-     *
-     * @return \Magento\GiftMessage\Model\Save
-     */
-    protected function _getGiftmessageSaveModel()
-    {
-        return $this->_giftMessageSave;
     }
 }

@@ -9,7 +9,7 @@
  * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
  */
 ?>
-<?php /** @var \Magento\GiftMessage\Helper\Message $giftMessageHelper */
+<?php /** @var \Magento\Sales\Model\GiftMessage\GiftMessageProviderInterface $giftMessageHelper */
 $giftMessageHelper = $block->getData('giftMessageHelper');
 ?>
 <?php if ($giftMessageHelper->isMessagesAllowed('main', $block->getQuote(), $block->getStoreId())): ?>

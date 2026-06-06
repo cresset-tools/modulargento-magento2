@@ -20,7 +20,7 @@ $prevOptionId = '';
 
     <?php if ($block->getItemOptions()
         || $parentItem->getDescription()
-        || $this->helper(Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order_item', $parentItem)
+        || $block->getGiftMessageProvider()->isMessagesAllowed('order_item', $parentItem)
         && $parentItem->getGiftMessageId()): ?>
         <?php $showLastRow = true; ?>
     <?php else: ?>

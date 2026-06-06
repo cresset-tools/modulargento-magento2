@@ -35,4 +35,72 @@ interface GiftMessageProviderInterface
      * @return \Magento\Framework\DataObject|null
      */
     public function getGiftMessage($messageId = null);
+
+    /**
+     * Whether the given quote item is allowed to carry a gift message.
+     *
+     * @param \Magento\Framework\DataObject $item
+     * @return bool
+     */
+    public function getIsAllowedQuoteItem($item);
+
+    /**
+     * Create the gift-message entity model for the given entity type (e.g. 'order').
+     *
+     * Returns null when gift messages are unavailable. The concrete return type is
+     * intentionally left unbound so Magento_Sales carries no reference to
+     * Magento_GiftMessage classes.
+     *
+     * @param string $type
+     * @return mixed|null
+     */
+    public function getEntityModelByType($type);
+
+    /**
+     * Load the gift message attached to the given entity (order/item), or null.
+     *
+     * @param DataObject $entity
+     * @return \Magento\Framework\DataObject|null
+     */
+    public function getGiftMessageForEntity(DataObject $entity);
+
+    /**
+     * Escaped, line-broken gift-message text for the given entity ('' when none).
+     *
+     * @param DataObject $entity
+     * @return string
+     */
+    public function getEscapedGiftMessage(DataObject $entity);
+
+    /**
+     * Persist the posted gift messages against the current admin quote (no-op when unavailable).
+     *
+     * @param array $giftmessages
+     * @return void
+     */
+    public function saveGiftmessagesInQuote($giftmessages);
+
+    /**
+     * Persist the posted gift messages against the current admin order.
+     *
+     * @param array $giftmessages
+     * @return bool Whether anything was saved.
+     */
+    public function saveGiftmessagesInOrder($giftmessages);
+
+    /**
+     * Import the "gift message allowed" flags for quote items from an add-products payload.
+     *
+     * @param array $products
+     * @return void
+     */
+    public function importAllowQuoteItemsFromProducts($products);
+
+    /**
+     * Import the "gift message allowed" flags for quote items from an update-items payload.
+     *
+     * @param array $items
+     * @return void
+     */
+    public function importAllowQuoteItemsFromItems($items);
 }
