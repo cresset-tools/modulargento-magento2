@@ -12,7 +12,7 @@ use Magento\Framework\File\Uploader;
 use Magento\Framework\Filesystem;
 use Magento\MediaGalleryApi\Api\IsPathExcludedInterface;
 use Magento\MediaGalleryApi\Api\SaveAssetsInterface;
-use Magento\MediaGallerySynchronizationApi\Api\SynchronizeFilesInterface;
+use Magento\MediaGalleryApi\Model\Synchronization\SynchronizeFilesProviderInterface;
 use Magento\MediaGalleryUiApi\Api\ConfigInterface;
 use Psr\Log\LoggerInterface;
 
@@ -42,7 +42,7 @@ class SaveImageInformation
     private $filesystem;
 
     /**
-     * @var SynchronizeFilesInterface
+     * @var SynchronizeFilesProviderInterface
      */
     private $synchronizeFiles;
 
@@ -55,7 +55,7 @@ class SaveImageInformation
      * @param Filesystem $filesystem
      * @param LoggerInterface $log
      * @param IsPathExcludedInterface $isPathExcluded
-     * @param SynchronizeFilesInterface $synchronizeFiles
+     * @param SynchronizeFilesProviderInterface $synchronizeFiles
      * @param ConfigInterface $config
      * @param array $imageExtensions
      */
@@ -63,7 +63,7 @@ class SaveImageInformation
         Filesystem $filesystem,
         LoggerInterface $log,
         IsPathExcludedInterface $isPathExcluded,
-        SynchronizeFilesInterface $synchronizeFiles,
+        SynchronizeFilesProviderInterface $synchronizeFiles,
         ConfigInterface $config,
         array $imageExtensions
     ) {
