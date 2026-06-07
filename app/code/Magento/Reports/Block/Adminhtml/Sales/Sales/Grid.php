@@ -7,7 +7,7 @@
 namespace Magento\Reports\Block\Adminhtml\Sales\Sales;
 
 use Magento\Framework\DataObject;
-use Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency;
+use Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency;
 use Magento\Framework\App\ObjectManager;
 use Magento\Sales\Model\Order\ConfigFactory;
 use Magento\Sales\Model\Order;

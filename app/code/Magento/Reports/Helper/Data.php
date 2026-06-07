@@ -25,7 +25,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Item factory
      *
-     * @var \Magento\Reports\Model\ItemFactory
+     * @var \Magento\ReportingFramework\Model\ItemFactory
      */
     protected $_itemFactory;
 
@@ -33,11 +33,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * Constructor
      *
      * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Reports\Model\ItemFactory $itemFactory
+     * @param \Magento\ReportingFramework\Model\ItemFactory $itemFactory
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
-        \Magento\Reports\Model\ItemFactory $itemFactory
+        \Magento\ReportingFramework\Model\ItemFactory $itemFactory
     ) {
         parent::__construct($context);
         $this->_itemFactory = $itemFactory;

@@ -12,7 +12,7 @@ use Magento\Framework\Data\Collection\EntityFactory;
 use Magento\Framework\DB\Adapter\Pdo\Mysql;
 use Magento\Framework\Event\Manager;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Magento\Reports\Model\ResourceModel\Report\Collection\AbstractCollection;
+use Magento\ReportingFramework\Model\ResourceModel\Report\Collection\AbstractCollection;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 

@@ -3,7 +3,7 @@
  * Copyright 2011 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Reports\Model;
+namespace Magento\ReportingFramework\Model;
 
 /**
  * Report Flag Model

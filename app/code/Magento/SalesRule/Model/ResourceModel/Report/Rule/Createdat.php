@@ -10,14 +10,14 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\Timezone\Validator;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Reports\Model\FlagFactory;
+use Magento\ReportingFramework\Model\FlagFactory;
 use Magento\Tax\Model\Config;
 use Psr\Log\LoggerInterface;
 
 /**
  * Rule report resource model with aggregation by created at
  */
-class Createdat extends \Magento\Reports\Model\ResourceModel\Report\AbstractReport
+class Createdat extends \Magento\ReportingFramework\Model\ResourceModel\Report\AbstractReport
 {
     /**
      * @param Context $context

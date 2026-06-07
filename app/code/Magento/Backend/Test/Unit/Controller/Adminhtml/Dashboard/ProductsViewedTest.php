@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Magento\Backend\Test\Unit\Controller\Adminhtml\Dashboard;
 
-use Magento\Backend\Block\Dashboard\Tab\Products\Viewed;
+use Magento\Reports\Block\Dashboard\Tab\Products\Viewed;
 use Magento\Backend\Controller\Adminhtml\Dashboard\ProductsViewed;
 
 /**

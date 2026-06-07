@@ -21,9 +21,9 @@ class Pcompared extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abst
     protected $_productFactory;
 
     /**
-     * @var \Magento\Reports\Model\ResourceModel\Event
+     * @var \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface
      */
-    protected $_event;
+    private $recentlyProductsProvider;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
@@ -31,7 +31,7 @@ class Pcompared extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abst
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
      * @param \Magento\Sales\Model\Config $salesConfig
-     * @param \Magento\Reports\Model\ResourceModel\Event $event
+     * @param \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface $recentlyProductsProvider
      * @param \Magento\Catalog\Model\ProductFactory $productFactory
      * @param array $data
      */
@@ -41,11 +41,11 @@ class Pcompared extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abst
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
         \Magento\Sales\Model\Config $salesConfig,
-        \Magento\Reports\Model\ResourceModel\Event $event,
+        \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface $recentlyProductsProvider,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         array $data = []
     ) {
-        $this->_event = $event;
+        $this->recentlyProductsProvider = $recentlyProductsProvider;
         $this->_productFactory = $productFactory;
         parent::__construct($context, $sessionQuote, $orderCreate, $priceCurrency, $salesConfig, $data);
     }
@@ -106,11 +106,9 @@ class Pcompared extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abst
             )->addAttributeToSelect(
                 'small_image'
             );
-            $this->_event->applyLogToCollection(
+            $this->recentlyProductsProvider->applyRecentlyComparedFilter(
                 $productCollection,
-                \Magento\Reports\Model\Event::EVENT_PRODUCT_COMPARE,
-                $this->getCustomerId(),
-                0,
+                (int) $this->getCustomerId(),
                 $skipProducts
             );
 

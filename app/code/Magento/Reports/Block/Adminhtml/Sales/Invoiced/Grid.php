@@ -6,7 +6,7 @@
 
 namespace Magento\Reports\Block\Adminhtml\Sales\Invoiced;
 
-use Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency;
+use Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency;
 use Magento\Reports\Block\Adminhtml\Sales\Grid\Column\Renderer\Date;
 
 /**

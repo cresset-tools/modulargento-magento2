@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Reports\Controller\Adminhtml\Report;
+namespace Magento\ReportingFramework\Controller\Adminhtml\Report;
 
 use Magento\Backend\Model\Auth\Session as AuthSession;
 use Magento\Backend\Model\Session;

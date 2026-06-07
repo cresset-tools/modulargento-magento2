@@ -3,7 +3,7 @@
  * Copyright 2013 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Backend\Block\Dashboard\Tab\Products;
+namespace Magento\Reports\Block\Dashboard\Tab\Products;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Pricing\Price\FinalPrice;

@@ -32,7 +32,7 @@ class Invoiced extends AbstractReport
         $this->_aggregateByOrderCreatedAt($from, $to);
         $this->_aggregateByInvoiceCreatedAt($from, $to);
 
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_INVOICE_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_INVOICE_FLAG_CODE);
         return $this;
     }
 

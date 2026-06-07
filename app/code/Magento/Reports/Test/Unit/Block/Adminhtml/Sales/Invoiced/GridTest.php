@@ -263,7 +263,7 @@ class GridTest extends TestCase
                 'rate' => $rate,
                 'header_css_class' => 'col-total-invoiced',
                 'column_css_class' => 'col-total-invoiced',
-                'renderer' => \Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency::class
+                'renderer' => \Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency::class
             ],
             [
                 'header' => __('Paid Invoices'),
@@ -275,7 +275,7 @@ class GridTest extends TestCase
                 'rate' => $rate,
                 'header_css_class' => 'col-total-invoiced-paid',
                 'column_css_class' => 'col-total-invoiced-paid',
-                'renderer' => \Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency::class
+                'renderer' => \Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency::class
             ],
             [
                 'header' => __('Unpaid Invoices'),
@@ -287,7 +287,7 @@ class GridTest extends TestCase
                 'rate' => $rate,
                 'header_css_class' => 'col-total-invoiced-not-paid',
                 'column_css_class' => 'col-total-invoiced-not-paid',
-                'renderer' => \Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency::class
+                'renderer' => \Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency::class
             ]
         ];
     }

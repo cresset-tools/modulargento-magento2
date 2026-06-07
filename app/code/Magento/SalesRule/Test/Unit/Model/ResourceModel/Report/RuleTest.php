@@ -11,7 +11,7 @@ use Magento\Framework\DB\Adapter\Pdo\Mysql;
 use Magento\Framework\DB\Select;
 use Magento\Framework\DB\Select\SelectRenderer;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Reports\Model\FlagFactory;
+use Magento\ReportingFramework\Model\FlagFactory;
 use Magento\SalesRule\Model\ResourceModel\Report\Rule;
 use Magento\SalesRule\Model\ResourceModel\Report\Rule\Createdat;
 use Magento\SalesRule\Model\ResourceModel\Report\Rule\CreatedatFactory;

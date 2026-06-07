@@ -15,7 +15,7 @@ use Magento\Sales\Model\ResourceModel\Helper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Magento\Reports\Model\ResourceModel\Helper as ReportsResourceHelper;
+use Magento\ReportingFramework\Model\ResourceModel\Helper as ReportsResourceHelper;
 
 class HelperTest extends TestCase
 {

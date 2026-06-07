@@ -15,14 +15,14 @@ class Amounts extends \Magento\Backend\Block\Dashboard\Graph
 {
     /**
      * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\Reports\Model\ResourceModel\Order\CollectionFactory $collectionFactory
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory $collectionFactory
      * @param \Magento\Backend\Helper\Dashboard\Data $dashboardData
      * @param \Magento\Backend\Helper\Dashboard\Order $dataHelper
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
-        \Magento\Reports\Model\ResourceModel\Order\CollectionFactory $collectionFactory,
+        \Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory $collectionFactory,
         \Magento\Backend\Helper\Dashboard\Data $dashboardData,
         \Magento\Backend\Helper\Dashboard\Order $dataHelper,
         array $data = []

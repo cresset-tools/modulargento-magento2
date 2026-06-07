@@ -6,7 +6,7 @@
 namespace Magento\Search\Controller\Adminhtml\Term;
 
 use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
-use Magento\Reports\Controller\Adminhtml\Index as ReportsIndexController;
+use Magento\Backend\App\Action as ReportsIndexController;
 use Magento\Framework\Controller\ResultFactory;
 
 class Report extends ReportsIndexController implements HttpGetActionInterface
