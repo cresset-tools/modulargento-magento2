@@ -194,7 +194,7 @@ class ProductRender extends \Magento\Framework\Model\AbstractExtensibleModel imp
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Magento\Catalog\Api\Data\ProductRenderExtensionInterface
+     * @return \Magento\Catalog\Api\Data\ProductRenderExtensionInterface|null
      */
     public function getExtensionAttributes()
     {
