@@ -114,4 +114,22 @@ class PriceBox extends PriceBoxRender
             '.'
         );
     }
+
+    /**
+     * The 'msrp_price' price type for the current item, or null when it isn't
+     * registered. Only Magento_Msrp adds that type to the price pool, so a build
+     * without Msrp would otherwise fatal in the price factory ("Class \"\" does
+     * not exist") when a template requests it. The price pool keeps no public
+     * membership API, so probe it against this item's actual price info.
+     *
+     * @return \Magento\Framework\Pricing\Price\PriceInterface|null
+     */
+    public function getMsrpPriceTypeOrNull()
+    {
+        try {
+            return $this->getPriceType('msrp_price');
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
 }
