@@ -5,7 +5,7 @@
  */
 namespace Magento\ReleaseNotification\Model\Condition;
 
-use Magento\AdminAnalytics\Model\Condition\ReleaseNotificationVisibilityInterface;
+use Magento\Framework\View\Layout\Condition\VisibilityConditionInterface;
 use Magento\ReleaseNotification\Model\ResourceModel\Viewer\Logger;
 use Magento\Backend\Model\Auth\Session;
 use Magento\Framework\App\ProductMetadataInterface;
@@ -20,7 +20,7 @@ use Magento\Framework\App\CacheInterface;
  * in favor of another in-product messaging mechanism
  * @see Current in-product messaging mechanism
  */
-class CanViewNotification implements ReleaseNotificationVisibilityInterface
+class CanViewNotification implements VisibilityConditionInterface
 {
     /**
      * Unique condition name.
