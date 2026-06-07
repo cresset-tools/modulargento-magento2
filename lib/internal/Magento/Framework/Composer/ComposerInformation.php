@@ -263,7 +263,7 @@ class ComposerInformation
      */
     public function isSystemPackage($packageName = '')
     {
-        if (preg_match('/^mage-os\/product-.+/', $packageName) == 1) {
+        if (preg_match('/^(mage-os|modulargento)\/product-.+/', $packageName) == 1) {
             return true;
         }
         return false;
@@ -278,7 +278,7 @@ class ComposerInformation
     {
         $rootPackage = $this->getComposer()->getPackage();
 
-        return (bool)preg_match('/mage-os\/magento2...?/', $rootPackage->getName());
+        return (bool)preg_match('/(mage-os|modulargento)\/magento2...?/', $rootPackage->getName());
     }
 
     /**
