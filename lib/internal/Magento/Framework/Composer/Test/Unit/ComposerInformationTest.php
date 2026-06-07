@@ -142,10 +142,14 @@ class ComposerInformationTest extends TestCase
             ['mage-os/product-enterprise-edition', true],
             ['mage-os/product-minimal', true],
             ['mage-os/product-custom-build', true],
+            ['modulargento/product-community-edition', true],
+            ['modulargento/product-enterprise-edition', true],
             ['magento/product-community-edition', false],
             ['mage-os/module-something', false],
+            ['modulargento/module-something', false],
             ['namespace/package', false],
             ['mage-os/product-', false],
+            ['modulargento/product-', false],
         ];
     }
 }
