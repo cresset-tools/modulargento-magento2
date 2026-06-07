@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Webapi\Model;
+namespace Magento\WebapiAuthorization\Model;
 
 use Magento\Authorization\Model\ResourceModel\Role\CollectionFactory as RoleCollectionFactory;
 use Magento\Authorization\Model\Role;

@@ -1,0 +1,26 @@
+{
+    "name": "magento/module-webapi-authorization",
+    "description": "Shared Web API user-context resolution (token/guest) and role locator, used by both Magento_Webapi (REST/SOAP) and the GraphQL layer — so GraphQL keeps token authentication when the REST/SOAP Web API is removed.",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-authorization": "*",
+        "magento/module-integration": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\WebapiAuthorization\\": ""
+        }
+    }
+}
