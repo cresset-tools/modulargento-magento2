@@ -12,7 +12,7 @@ namespace Magento\Tax\Model\ResourceModel\Report\Tax;
 /**
  * Class for tax report resource model with aggregation by created at
  */
-class Createdat extends \Magento\Reports\Model\ResourceModel\Report\AbstractReport
+class Createdat extends \Magento\ReportingFramework\Model\ResourceModel\Report\AbstractReport
 {
     /**
      * Resource initialization

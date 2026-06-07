@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Reports\Model\ResourceModel\Customer;
+namespace Magento\ReportingFramework\Model\ResourceModel\Customer;
 
 /**
  * Customers Report collection.

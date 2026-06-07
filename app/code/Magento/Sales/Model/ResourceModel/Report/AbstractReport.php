@@ -8,6 +8,6 @@ namespace Magento\Sales\Model\ResourceModel\Report;
 /**
  * Order report resource model
  */
-abstract class AbstractReport extends \Magento\Reports\Model\ResourceModel\Report\AbstractReport
+abstract class AbstractReport extends \Magento\ReportingFramework\Model\ResourceModel\Report\AbstractReport
 {
 }

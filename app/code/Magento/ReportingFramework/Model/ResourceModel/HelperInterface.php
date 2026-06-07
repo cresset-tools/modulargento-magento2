@@ -7,7 +7,7 @@
 /**
  * Reports resource helper interface
  */
-namespace Magento\Reports\Model\ResourceModel;
+namespace Magento\ReportingFramework\Model\ResourceModel;
 
 /**
  * @api

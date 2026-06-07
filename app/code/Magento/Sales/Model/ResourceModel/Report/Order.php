@@ -24,7 +24,7 @@ class Order extends AbstractReport
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
-     * @param \Magento\Reports\Model\FlagFactory $reportsFlagFactory
+     * @param \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory
      * @param \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param \Magento\Sales\Model\ResourceModel\Report\Order\CreatedatFactory $createDatFactory
@@ -35,7 +35,7 @@ class Order extends AbstractReport
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
-        \Magento\Reports\Model\FlagFactory $reportsFlagFactory,
+        \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory,
         \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator,
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\Sales\Model\ResourceModel\Report\Order\CreatedatFactory $createDatFactory,
@@ -76,7 +76,7 @@ class Order extends AbstractReport
     {
         $this->_createDatFactory->create()->aggregate($from, $to);
         $this->_updateDatFactory->create()->aggregate($from, $to);
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_ORDER_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_ORDER_FLAG_CODE);
         return $this;
     }
 }

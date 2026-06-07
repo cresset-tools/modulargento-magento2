@@ -13,18 +13,18 @@ use Magento\Sales\Model\ResourceModel\Report\Bestsellers as BestsellersReport;
 class Helper extends \Magento\Framework\DB\Helper implements HelperInterface
 {
     /**
-     * @var \Magento\Reports\Model\ResourceModel\Helper
+     * @var \Magento\ReportingFramework\Model\ResourceModel\Helper
      */
     protected $_reportsResourceHelper;
 
     /**
      * @param \Magento\Framework\App\ResourceConnection $resource
-     * @param \Magento\Reports\Model\ResourceModel\Helper $reportsResourceHelper
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Helper $reportsResourceHelper
      * @param string $modulePrefix
      */
     public function __construct(
         \Magento\Framework\App\ResourceConnection $resource,
-        \Magento\Reports\Model\ResourceModel\Helper $reportsResourceHelper,
+        \Magento\ReportingFramework\Model\ResourceModel\Helper $reportsResourceHelper,
         $modulePrefix = 'sales'
     ) {
         parent::__construct($resource, $modulePrefix);

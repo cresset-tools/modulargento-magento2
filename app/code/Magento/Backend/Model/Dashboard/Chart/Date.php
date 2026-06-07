@@ -10,7 +10,7 @@ namespace Magento\Backend\Model\Dashboard\Chart;
 use DateTimeZone;
 use Magento\Backend\Model\Dashboard\Period;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Reports\Model\ResourceModel\Order\CollectionFactory;
+use Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory;
 
 /**
  * Dashboard chart dates retriever

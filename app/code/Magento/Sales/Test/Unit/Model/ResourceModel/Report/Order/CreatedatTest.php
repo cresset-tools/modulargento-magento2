@@ -14,7 +14,7 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\Timezone\Validator;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Reports\Model\FlagFactory;
+use Magento\ReportingFramework\Model\FlagFactory;
 use Magento\Sales\Model\ResourceModel\Report\Order\Createdat;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\Exception;

@@ -13,7 +13,7 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\Timezone\Validator;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Reports\Model\FlagFactory;
+use Magento\ReportingFramework\Model\FlagFactory;
 use Magento\Sales\Model\ResourceModel\Helper;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
@@ -153,7 +153,7 @@ class Bestsellers extends AbstractReport
         $this->_updateRatingPos(self::AGGREGATION_DAILY);
         $this->_updateRatingPos(self::AGGREGATION_MONTHLY);
         $this->_updateRatingPos(self::AGGREGATION_YEARLY);
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_BESTSELLERS_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_BESTSELLERS_FLAG_CODE);
 
         return $this;
     }

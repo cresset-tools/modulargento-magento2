@@ -3,7 +3,7 @@
  * Copyright 2015 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Reports\Model\ResourceModel\Report\Collection;
+namespace Magento\ReportingFramework\Model\ResourceModel\Report\Collection;
 
 /**
  * Report collection abstract model

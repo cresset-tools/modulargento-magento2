@@ -9,7 +9,7 @@ namespace Magento\Backend\Block\Dashboard;
 
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Module\Manager;
-use Magento\Reports\Model\ResourceModel\Order\CollectionFactory;
+use Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory;
 
 /**
  * Adminhtml dashboard sales statistics bar

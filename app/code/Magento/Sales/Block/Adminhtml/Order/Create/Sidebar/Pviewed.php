@@ -21,9 +21,9 @@ class Pviewed extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abstra
     protected $_productFactory;
 
     /**
-     * @var \Magento\Reports\Model\EventFactory
+     * @var \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface
      */
-    protected $_eventFactory;
+    private $recentlyProductsProvider;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
@@ -31,7 +31,7 @@ class Pviewed extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abstra
      * @param \Magento\Sales\Model\AdminOrder\Create $orderCreate
      * @param PriceCurrencyInterface $priceCurrency
      * @param \Magento\Sales\Model\Config $salesConfig
-     * @param \Magento\Reports\Model\EventFactory $eventFactory
+     * @param \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface $recentlyProductsProvider
      * @param \Magento\Catalog\Model\ProductFactory $productFactory
      * @param array $data
      */
@@ -41,11 +41,11 @@ class Pviewed extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abstra
         \Magento\Sales\Model\AdminOrder\Create $orderCreate,
         PriceCurrencyInterface $priceCurrency,
         \Magento\Sales\Model\Config $salesConfig,
-        \Magento\Reports\Model\EventFactory $eventFactory,
+        \Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface $recentlyProductsProvider,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         array $data = []
     ) {
-        $this->_eventFactory = $eventFactory;
+        $this->recentlyProductsProvider = $recentlyProductsProvider;
         $this->_productFactory = $productFactory;
         parent::__construct($context, $sessionQuote, $orderCreate, $priceCurrency, $salesConfig, $data);
     }
@@ -87,17 +87,10 @@ class Pviewed extends \Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\Abstra
                 $stores[] = $store->getId();
             }
 
-            $collection = $this->_eventFactory->create()->getCollection()->addStoreFilter(
-                $stores
-            )->addRecentlyFiler(
-                \Magento\Reports\Model\Event::EVENT_PRODUCT_VIEW,
-                $this->getCustomerId(),
-                0
+            $productIds = $this->recentlyProductsProvider->getRecentlyViewedProductIds(
+                $stores,
+                (int) $this->getCustomerId()
             );
-            $productIds = [];
-            foreach ($collection as $event) {
-                $productIds[] = $event->getObjectId();
-            }
 
             $productCollection = null;
             if ($productIds) {

@@ -41,7 +41,7 @@ class FormTest extends TestCase
     private $formFactory;
 
     /**
-     * @var \Magento\Reports\Block\Adminhtml\Filter\Form
+     * @var \Magento\ReportingFramework\Block\Adminhtml\Filter\Form
      */
     private $model;
 
@@ -59,7 +59,7 @@ class FormTest extends TestCase
         $this->formFactory = $this->createMock(FormFactory::class);
         $this->context->method('getUrlBuilder')
             ->willReturn($this->createMock(UrlInterface::class));
-        $this->model = new \Magento\Reports\Block\Adminhtml\Filter\Form(
+        $this->model = new \Magento\ReportingFramework\Block\Adminhtml\Filter\Form(
             $this->context,
             $this->registry,
             $this->formFactory

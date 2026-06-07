@@ -31,7 +31,7 @@ class Shipping extends AbstractReport
     {
         $this->_aggregateByOrderCreatedAt($from, $to);
         $this->_aggregateByShippingCreatedAt($from, $to);
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_SHIPPING_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_SHIPPING_FLAG_CODE);
         return $this;
     }
 

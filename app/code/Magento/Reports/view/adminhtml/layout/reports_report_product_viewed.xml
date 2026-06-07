@@ -30,7 +30,7 @@
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Magento\Reports\Block\Adminhtml\Product\Viewed" template="Magento_Reports::report/grid/container.phtml" name="product.report.grid.container">
-                <block class="Magento\Reports\Block\Adminhtml\Filter\Form" name="grid.filter.form">
+                <block class="Magento\ReportingFramework\Block\Adminhtml\Filter\Form" name="grid.filter.form">
                     <action method="setFieldVisibility">
                         <argument name="field" xsi:type="string">report_type</argument>
                         <argument name="visibility" xsi:type="string">0</argument>
