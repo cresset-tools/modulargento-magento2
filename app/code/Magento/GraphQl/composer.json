@@ -6,6 +6,7 @@
         "php": "~8.3.0||~8.4.0||~8.5.0",
         "magento/module-eav": "*",
         "magento/framework": "*",
+        "magento/module-webapi-authorization": "*",
         "magento/framework-graph-ql": "*",
         "magento/framework-graph-ql-schema-stitching": "*",
         "magento/module-webapi": "*",

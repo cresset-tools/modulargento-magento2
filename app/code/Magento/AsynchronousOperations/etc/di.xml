@@ -6,6 +6,8 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Default empty async-service config; Magento_WebapiAsync overrides this with the real REST-derived config when installed -->
+    <preference for="Magento\AsynchronousOperations\Model\ConfigInterface" type="Magento\AsynchronousOperations\Model\Config\NullConfig" />
     <preference for="Magento\AsynchronousOperations\Api\Data\BulkSummaryInterface" type="Magento\AsynchronousOperations\Model\BulkSummary" />
     <preference for="Magento\AsynchronousOperations\Api\SaveMultipleOperationsInterface" type="Magento\AsynchronousOperations\Model\SaveMultipleOperations" />
     <preference for="Magento\AsynchronousOperations\Api\Data\OperationInterface" type="Magento\AsynchronousOperations\Model\Operation" />
