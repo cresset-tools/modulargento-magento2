@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Magento\Catalog\Test\Unit\Controller\Adminhtml\Category\Image;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use Magento\CardinalCommerce\Model\Response\JwtPayloadValidator;
 use Magento\Catalog\Controller\Adminhtml\Category\Image\Upload as Model;
 use Magento\Catalog\Model\ImageUploader;
 use Magento\Framework\App\Request\Http as Request;
