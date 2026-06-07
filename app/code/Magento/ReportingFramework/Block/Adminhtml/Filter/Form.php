@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Reports\Block\Adminhtml\Filter;
+namespace Magento\ReportingFramework\Block\Adminhtml\Filter;
 
 /**
  * Adminhtml report filter form

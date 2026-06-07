@@ -6,7 +6,7 @@
 
 namespace Magento\Reports\Block\Adminhtml\Sales\Refunded;
 
-use Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency;
+use Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency;
 
 /**
  * Adminhtml refunded report grid block

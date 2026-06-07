@@ -40,7 +40,7 @@ class Viewed extends \Magento\Sales\Model\ResourceModel\Report\AbstractReport
     /**
      * Resource helper instance
      *
-     * @var \Magento\Reports\Model\ResourceModel\Helper
+     * @var \Magento\ReportingFramework\Model\ResourceModel\Helper
      */
     protected $_resourceHelper;
 
@@ -50,22 +50,22 @@ class Viewed extends \Magento\Sales\Model\ResourceModel\Report\AbstractReport
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
-     * @param \Magento\Reports\Model\FlagFactory $reportsFlagFactory
+     * @param \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory
      * @param \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param \Magento\Catalog\Model\ResourceModel\Product $productResource
-     * @param \Magento\Reports\Model\ResourceModel\Helper $resourceHelper
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Helper $resourceHelper
      * @param string $connectionName
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
-        \Magento\Reports\Model\FlagFactory $reportsFlagFactory,
+        \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory,
         \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator,
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\Catalog\Model\ResourceModel\Product $productResource,
-        \Magento\Reports\Model\ResourceModel\Helper $resourceHelper,
+        \Magento\ReportingFramework\Model\ResourceModel\Helper $resourceHelper,
         $connectionName = null
     ) {
         parent::__construct(
@@ -246,7 +246,7 @@ class Viewed extends \Magento\Sales\Model\ResourceModel\Report\AbstractReport
             $mainTable,
             $this->getTable(self::AGGREGATION_YEARLY)
         );
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_PRODUCT_VIEWED_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_PRODUCT_VIEWED_FLAG_CODE);
         return $this;
     }
 }

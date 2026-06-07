@@ -3,11 +3,11 @@
  * Copyright 2014 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Reports\Controller\Adminhtml\Report\Statistics;
+namespace Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics;
 
 use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
 
-class Index extends \Magento\Reports\Controller\Adminhtml\Report\Statistics implements HttpGetActionInterface
+class Index extends \Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics implements HttpGetActionInterface
 {
     /**
      * Refresh statistics action

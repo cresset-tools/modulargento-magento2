@@ -8,7 +8,7 @@ namespace Magento\Sales\Model\ResourceModel\Report\Collection;
 /**
  * Report collection abstract model
  */
-class AbstractCollection extends \Magento\Reports\Model\ResourceModel\Report\Collection\AbstractCollection
+class AbstractCollection extends \Magento\ReportingFramework\Model\ResourceModel\Report\Collection\AbstractCollection
 {
     /**
      * @var string
@@ -32,7 +32,7 @@ class AbstractCollection extends \Magento\Reports\Model\ResourceModel\Report\Col
         ?\Magento\Framework\DB\Adapter\AdapterInterface $connection = null
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
-        $this->setModel(\Magento\Reports\Model\Item::class);
+        $this->setModel(\Magento\ReportingFramework\Model\Item::class);
     }
 
     /**

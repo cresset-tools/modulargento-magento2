@@ -10,8 +10,8 @@ namespace Magento\Backend\Block\Dashboard;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Model\Dashboard\Period;
 use Magento\Framework\Module\Manager;
-use Magento\Reports\Model\ResourceModel\Order\Collection;
-use Magento\Reports\Model\ResourceModel\Order\CollectionFactory;
+use Magento\ReportingFramework\Model\ResourceModel\Order\Collection;
+use Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory;
 use Magento\Store\Model\Store;
 use Magento\Framework\App\ObjectManager;
 

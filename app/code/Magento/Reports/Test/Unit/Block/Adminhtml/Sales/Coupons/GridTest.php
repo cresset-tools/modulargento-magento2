@@ -10,7 +10,7 @@ namespace Magento\Reports\Test\Unit\Block\Adminhtml\Sales\Coupons;
 use Magento\Framework\DataObject;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Reports\Block\Adminhtml\Sales\Coupons\Grid;
-use Magento\Reports\Model\Item;
+use Magento\ReportingFramework\Model\Item;
 use Magento\Reports\Model\ResourceModel\Report\Collection\Factory;
 use Magento\Store\Api\Data\StoreInterface;
 use Magento\Store\Model\StoreManagerInterface;

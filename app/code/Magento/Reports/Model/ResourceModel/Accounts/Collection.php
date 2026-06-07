@@ -13,7 +13,7 @@ namespace Magento\Reports\Model\ResourceModel\Accounts;
  * @api
  * @since 100.0.2
  */
-class Collection extends \Magento\Reports\Model\ResourceModel\Customer\Collection
+class Collection extends \Magento\ReportingFramework\Model\ResourceModel\Customer\Collection
 {
     /**
      * Join created_at and accounts fields

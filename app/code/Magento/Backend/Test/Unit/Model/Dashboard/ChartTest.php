@@ -13,7 +13,7 @@ use Magento\Backend\Model\Dashboard\Chart\Date as DateRetriever;
 use Magento\Backend\Model\Dashboard\Period;
 use Magento\Framework\DataObject;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Reports\Model\ResourceModel\Order\Collection;
+use Magento\ReportingFramework\Model\ResourceModel\Order\Collection;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

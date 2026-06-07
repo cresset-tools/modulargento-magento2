@@ -6,12 +6,12 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Reports\Model\ResourceModel\Customer\Collection">
+    <type name="Magento\ReportingFramework\Model\ResourceModel\Customer\Collection">
         <arguments>
             <argument name="modelName" xsi:type="string">Magento\Customer\Model\Backend\Customer</argument>
         </arguments>
     </type>
-    <type name="Magento\Reports\Controller\Adminhtml\Report\Statistics">
+    <type name="Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics">
         <arguments>
             <argument name="reportTypes" xsi:type="array">
                 <item name="sales" xsi:type="string">Magento\Sales\Model\ResourceModel\Report\Order</item>

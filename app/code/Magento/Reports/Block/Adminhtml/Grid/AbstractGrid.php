@@ -402,7 +402,7 @@ class AbstractGrid extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * Add order status filter
      *
-     * @param \Magento\Reports\Model\ResourceModel\Report\Collection\AbstractCollection $collection
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Report\Collection\AbstractCollection $collection
      * @param \Magento\Framework\DataObject $filterData
      * @return $this
      */
@@ -417,7 +417,7 @@ class AbstractGrid extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * Can be overridden in child classes if custom filter needed
      *
-     * @param \Magento\Reports\Model\ResourceModel\Report\Collection\AbstractCollection $collection
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Report\Collection\AbstractCollection $collection
      * @param \Magento\Framework\DataObject $filterData
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

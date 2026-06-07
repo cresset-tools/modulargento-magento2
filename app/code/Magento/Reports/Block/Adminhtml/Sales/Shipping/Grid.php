@@ -6,7 +6,7 @@
 
 namespace Magento\Reports\Block\Adminhtml\Sales\Shipping;
 
-use Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency;
+use Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency;
 
 /**
  * Adminhtml shipping report grid block

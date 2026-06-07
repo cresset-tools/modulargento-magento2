@@ -6,6 +6,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\AdminOrder\Product\RecentlyProductsProviderInterface" type="Magento\Reports\Model\AdminOrder\RecentlyProductsProvider"/>
     <type name="Magento\Customer\Model\ResourceModel\Visitor">
         <plugin name="reportLog" type="Magento\Reports\Model\Plugin\Log" />
     </type>
@@ -22,11 +23,6 @@
     <type name="Magento\Reports\Model\Product\Index\AbstractIndex">
         <arguments>
             <argument name="reportSession" xsi:type="object">Magento\Reports\Model\Session</argument>
-        </arguments>
-    </type>
-    <type name="Magento\Reports\Model\ResourceModel\Helper">
-        <arguments>
-            <argument name="modulePrefix" xsi:type="string">reports</argument>
         </arguments>
     </type>
     <preference for="Magento\Reports\Model\ResourceModel\Quote\CollectionFactoryInterface" type="Magento\Reports\Model\ResourceModel\Quote\CollectionFactory"/>

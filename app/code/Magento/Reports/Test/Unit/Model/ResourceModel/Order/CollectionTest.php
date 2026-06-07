@@ -18,7 +18,7 @@ use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\ResourceModel\Db\VersionControl\Snapshot;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Reports\Model\ResourceModel\Order\Collection;
+use Magento\ReportingFramework\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\Order\Config;
 use Magento\Sales\Model\ResourceModel\Report\Order;
 use Magento\Sales\Model\ResourceModel\Report\OrderFactory;

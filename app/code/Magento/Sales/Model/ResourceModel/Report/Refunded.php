@@ -32,7 +32,7 @@ class Refunded extends AbstractReport
         $this->_aggregateByOrderCreatedAt($from, $to);
         $this->_aggregateByRefundCreatedAt($from, $to);
 
-        $this->_setFlagData(\Magento\Reports\Model\Flag::REPORT_REFUNDED_FLAG_CODE);
+        $this->_setFlagData(\Magento\ReportingFramework\Model\Flag::REPORT_REFUNDED_FLAG_CODE);
         return $this;
     }
 

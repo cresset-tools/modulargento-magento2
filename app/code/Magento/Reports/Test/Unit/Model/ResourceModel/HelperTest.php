@@ -10,7 +10,7 @@ namespace Magento\Reports\Test\Unit\Model\ResourceModel;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Select;
-use Magento\Reports\Model\ResourceModel\Helper;
+use Magento\ReportingFramework\Model\ResourceModel\Helper;
 use Magento\Store\Api\Data\StoreInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use PHPUnit\Framework\Attributes\DataProvider;

@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Reports\Model\ResourceModel\Order;
+namespace Magento\ReportingFramework\Model\ResourceModel\Order;
 
 use Magento\Framework\DB\Select;
 use DateTimeZone;

@@ -139,7 +139,7 @@ abstract class AbstractReport extends \Magento\Backend\App\Action
      */
     protected function _showLastExecutionTime($flagCode, $refreshCode)
     {
-        $flag = $this->_objectManager->create(\Magento\Reports\Model\Flag::class)
+        $flag = $this->_objectManager->create(\Magento\ReportingFramework\Model\Flag::class)
             ->setReportFlagCode($flagCode)
             ->loadSelf();
         $updatedAt = __('Never');

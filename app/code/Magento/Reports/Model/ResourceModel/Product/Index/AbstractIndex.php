@@ -16,7 +16,7 @@ abstract class AbstractIndex extends \Magento\Framework\Model\ResourceModel\Db\A
     /**
      * Reports helper
      *
-     * @var \Magento\Reports\Model\ResourceModel\Helper
+     * @var \Magento\ReportingFramework\Model\ResourceModel\Helper
      */
     protected $_resourceHelper;
 
@@ -24,12 +24,12 @@ abstract class AbstractIndex extends \Magento\Framework\Model\ResourceModel\Db\A
      * Constructor
      *
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
-     * @param \Magento\Reports\Model\ResourceModel\Helper $resourceHelper
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Helper $resourceHelper
      * @param string $connectionName
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
-        \Magento\Reports\Model\ResourceModel\Helper $resourceHelper,
+        \Magento\ReportingFramework\Model\ResourceModel\Helper $resourceHelper,
         $connectionName = null
     ) {
         parent::__construct($context, $connectionName);

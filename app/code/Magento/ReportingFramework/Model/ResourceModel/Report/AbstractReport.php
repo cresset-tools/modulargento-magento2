@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Reports\Model\ResourceModel\Report;
+namespace Magento\ReportingFramework\Model\ResourceModel\Report;
 
 use Magento\Framework\DB\Select;
 
@@ -20,7 +20,7 @@ abstract class AbstractReport extends \Magento\Framework\Model\ResourceModel\Db\
     /**
      * Flag object
      *
-     * @var \Magento\Reports\Model\Flag
+     * @var \Magento\ReportingFramework\Model\Flag
      */
     protected $_flag = null;
 
@@ -39,7 +39,7 @@ abstract class AbstractReport extends \Magento\Framework\Model\ResourceModel\Db\
     protected $_localeDate;
 
     /**
-     * @var \Magento\Reports\Model\FlagFactory
+     * @var \Magento\ReportingFramework\Model\FlagFactory
      */
     protected $_reportsFlagFactory;
 
@@ -64,7 +64,7 @@ abstract class AbstractReport extends \Magento\Framework\Model\ResourceModel\Db\
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
-     * @param \Magento\Reports\Model\FlagFactory $reportsFlagFactory
+     * @param \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory
      * @param \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param string|null $connectionName
@@ -73,7 +73,7 @@ abstract class AbstractReport extends \Magento\Framework\Model\ResourceModel\Db\
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
-        \Magento\Reports\Model\FlagFactory $reportsFlagFactory,
+        \Magento\ReportingFramework\Model\FlagFactory $reportsFlagFactory,
         \Magento\Framework\Stdlib\DateTime\Timezone\Validator $timezoneValidator,
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         $connectionName = null
@@ -89,7 +89,7 @@ abstract class AbstractReport extends \Magento\Framework\Model\ResourceModel\Db\
     /**
      * Retrieve flag object
      *
-     * @return \Magento\Reports\Model\Flag
+     * @return \Magento\ReportingFramework\Model\Flag
      */
     protected function _getFlag()
     {

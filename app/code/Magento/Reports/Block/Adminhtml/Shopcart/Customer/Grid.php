@@ -13,20 +13,20 @@ namespace Magento\Reports\Block\Adminhtml\Shopcart\Customer;
 class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
 {
     /**
-     * @var \Magento\Reports\Model\ResourceModel\Customer\CollectionFactory
+     * @var \Magento\ReportingFramework\Model\ResourceModel\Customer\CollectionFactory
      */
     protected $_customersFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
-     * @param \Magento\Reports\Model\ResourceModel\Customer\CollectionFactory $customersFactory
+     * @param \Magento\ReportingFramework\Model\ResourceModel\Customer\CollectionFactory $customersFactory
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
-        \Magento\Reports\Model\ResourceModel\Customer\CollectionFactory $customersFactory,
+        \Magento\ReportingFramework\Model\ResourceModel\Customer\CollectionFactory $customersFactory,
         array $data = []
     ) {
         $this->_customersFactory = $customersFactory;
@@ -111,7 +111,7 @@ class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
                 'align' => 'right',
                 'currency_code' => $currencyCode,
                 'index' => 'total',
-                'renderer' => \Magento\Reports\Block\Adminhtml\Grid\Column\Renderer\Currency::class,
+                'renderer' => \Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer\Currency::class,
                 'rate' => $this->getRate($currencyCode)
             ]
         );

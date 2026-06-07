@@ -9,7 +9,7 @@ namespace Magento\Backend\Controller\Adminhtml\Dashboard;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
-use Magento\Reports\Controller\Adminhtml\Report\Statistics;
+use Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics;
 use Psr\Log\LoggerInterface;
 
 /**
