@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\MediaGalleryMetadata\Model\IptcEmbed">
+        <plugin name="remoteIptcEmbed" type="Magento\MediaGalleryMetadataRemoteStorage\Plugin\MediaGalleryMetadata\IptcEmbed" />
+    </type>
+    <type name="Magento\MediaGalleryMetadata\Model\ExifReader">
+        <plugin name="remoteExifReader" type="Magento\MediaGalleryMetadataRemoteStorage\Plugin\MediaGalleryMetadata\ExifReader" />
+    </type>
+</config>

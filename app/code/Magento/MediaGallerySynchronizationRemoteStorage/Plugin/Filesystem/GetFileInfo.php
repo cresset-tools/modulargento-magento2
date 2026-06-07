@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\RemoteStorage\Plugin\Filesystem;
+namespace Magento\MediaGallerySynchronizationRemoteStorage\Plugin\Filesystem;
 
 use Magento\Framework\Exception\FileSystemException;
 use Magento\MediaGallerySynchronization\Model\Filesystem\GetFileInfo as Subject;

@@ -1,0 +1,26 @@
+{
+    "name": "magento/module-media-gallery-metadata-remote-storage",
+    "description": "Bridge module that copies media gallery metadata files from remote storage when Magento_RemoteStorage is enabled.",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-remote-storage": "*",
+        "magento/module-media-gallery-metadata": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\MediaGalleryMetadataRemoteStorage\\": ""
+        }
+    }
+}
