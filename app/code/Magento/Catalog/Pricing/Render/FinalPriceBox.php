@@ -16,7 +16,7 @@ use Magento\Framework\Pricing\Render\PriceBox as BasePriceBox;
 use Magento\Framework\Pricing\Render\RendererPool;
 use Magento\Framework\Pricing\SaleableInterface;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Msrp\Pricing\Price\MsrpPrice;
+use Magento\Catalog\Model\Product\MsrpDisplayProviderInterface;
 
 /**
  * Class for final_price rendering
@@ -37,6 +37,11 @@ class FinalPriceBox extends BasePriceBox
     private $minimalPriceCalculator;
 
     /**
+     * @var MsrpDisplayProviderInterface
+     */
+    private $msrpDisplayProvider;
+
+    /**
      * @param Context $context
      * @param SaleableInterface $saleableItem
      * @param PriceInterface $price
@@ -44,6 +49,7 @@ class FinalPriceBox extends BasePriceBox
      * @param array $data
      * @param SalableResolverInterface $salableResolver
      * @param MinimalPriceCalculatorInterface $minimalPriceCalculator
+     * @param MsrpDisplayProviderInterface $msrpDisplayProvider
      */
     public function __construct(
         Context $context,
@@ -52,12 +58,15 @@ class FinalPriceBox extends BasePriceBox
         RendererPool $rendererPool,
         array $data = [],
         ?SalableResolverInterface $salableResolver = null,
-        ?MinimalPriceCalculatorInterface $minimalPriceCalculator = null
+        ?MinimalPriceCalculatorInterface $minimalPriceCalculator = null,
+        ?MsrpDisplayProviderInterface $msrpDisplayProvider = null
     ) {
         parent::__construct($context, $saleableItem, $price, $rendererPool, $data);
         $this->salableResolver = $salableResolver ?: ObjectManager::getInstance()->get(SalableResolverInterface::class);
         $this->minimalPriceCalculator = $minimalPriceCalculator
             ?: ObjectManager::getInstance()->get(MinimalPriceCalculatorInterface::class);
+        $this->msrpDisplayProvider = $msrpDisplayProvider
+            ?: ObjectManager::getInstance()->get(MsrpDisplayProviderInterface::class);
     }
 
     /**
@@ -74,7 +83,7 @@ class FinalPriceBox extends BasePriceBox
         if ($this->isMsrpPriceApplicable()) {
             /** @var BasePriceBox $msrpBlock */
             $msrpBlock = $this->rendererPool->createPriceRender(
-                MsrpPrice::PRICE_CODE,
+                'msrp_price',
                 $this->getSaleableItem(),
                 [
                     'real_price_html' => $result,
@@ -94,16 +103,16 @@ class FinalPriceBox extends BasePriceBox
      */
     protected function isMsrpPriceApplicable()
     {
-        try {
-            /** @var MsrpPrice $msrpPriceType */
-            $msrpPriceType = $this->getSaleableItem()->getPriceInfo()->getPrice('msrp_price');
-        } catch (\InvalidArgumentException $e) {
-            $this->_logger->critical($e);
-            return false;
-        }
-
+        // Routed through MsrpDisplayProviderInterface (the Null default reports
+        // "not applicable" when Magento_Msrp isn't installed) instead of looking
+        // up the 'msrp_price' price type directly — that type is only registered
+        // in the price pool by Magento_Msrp, so requesting it in a build without
+        // Msrp produced a fatal "Class \"\" does not exist" from the price
+        // factory rather than a catchable miss.
         $product = $this->getSaleableItem();
-        return $msrpPriceType->canApplyMsrp($product) && $msrpPriceType->isMinimalPriceLessMsrp($product);
+
+        return $this->msrpDisplayProvider->canApplyMsrp($product)
+            && $this->msrpDisplayProvider->isMinimalPriceLessMsrp($product);
     }
 
     /**
