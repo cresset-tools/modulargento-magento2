@@ -3,10 +3,10 @@
  * Copyright 2014 Adobe
  * All Rights Reserved.
  */
-namespace Magento\Reports\Controller\Adminhtml\Report\Statistics;
+namespace Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics;
 
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
-use Magento\Reports\Controller\Adminhtml\Report\Statistics;
+use Magento\ReportingFramework\Controller\Adminhtml\Report\Statistics;
 
 /**
  * Refresh statistics action.

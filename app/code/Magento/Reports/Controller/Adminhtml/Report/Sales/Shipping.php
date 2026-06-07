@@ -5,7 +5,7 @@
  */
 namespace Magento\Reports\Controller\Adminhtml\Report\Sales;
 
-use Magento\Reports\Model\Flag;
+use Magento\ReportingFramework\Model\Flag;
 
 class Shipping extends \Magento\Reports\Controller\Adminhtml\Report\Sales
 {

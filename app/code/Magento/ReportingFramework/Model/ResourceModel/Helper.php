@@ -7,12 +7,12 @@
 /**
  * Reports Mysql resource helper model
  */
-namespace Magento\Reports\Model\ResourceModel;
+namespace Magento\ReportingFramework\Model\ResourceModel;
 
 use Magento\Framework\App\ResourceConnection;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Helper extends \Magento\Framework\DB\Helper implements \Magento\Reports\Model\ResourceModel\HelperInterface
+class Helper extends \Magento\Framework\DB\Helper implements \Magento\ReportingFramework\Model\ResourceModel\HelperInterface
 {
     /**
      * @var StoreManagerInterface

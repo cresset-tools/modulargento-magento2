@@ -8,7 +8,7 @@ namespace Magento\Backend\Block\Dashboard\Orders;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Helper\Data;
 use Magento\Framework\Module\Manager;
-use Magento\Reports\Model\ResourceModel\Order\CollectionFactory;
+use Magento\ReportingFramework\Model\ResourceModel\Order\CollectionFactory;
 
 /**
  * Adminhtml dashboard recent orders grid

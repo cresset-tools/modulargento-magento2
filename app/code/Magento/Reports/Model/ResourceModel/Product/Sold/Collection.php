@@ -19,7 +19,7 @@ use Zend_Db_Select_Exception;
  * @api
  * @since 100.0.2
  */
-class Collection extends \Magento\Reports\Model\ResourceModel\Order\Collection
+class Collection extends \Magento\ReportingFramework\Model\ResourceModel\Order\Collection
 {
     /**
      * Set Date range to collection.

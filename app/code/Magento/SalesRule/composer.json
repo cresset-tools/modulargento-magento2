@@ -6,6 +6,7 @@
     },
     "require": {
         "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/module-reporting-framework": "*",
         "magento/framework": "*",
         "magento/framework-bulk": "*",
         "magento/module-backend": "*",

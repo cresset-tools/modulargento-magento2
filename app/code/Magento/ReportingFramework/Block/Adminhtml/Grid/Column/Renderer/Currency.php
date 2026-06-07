@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\Reports\Block\Adminhtml\Grid\Column\Renderer;
+namespace Magento\ReportingFramework\Block\Adminhtml\Grid\Column\Renderer;
 
 use Magento\Backend\Block\Widget\Grid\Column\Renderer\Currency as BackendCurrency;
 use Magento\Framework\Currency\Exception\CurrencyException;

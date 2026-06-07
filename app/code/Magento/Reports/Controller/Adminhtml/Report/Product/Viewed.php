@@ -6,7 +6,7 @@
 namespace Magento\Reports\Controller\Adminhtml\Report\Product;
 
 use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
-use Magento\Reports\Model\Flag;
+use Magento\ReportingFramework\Model\Flag;
 
 class Viewed extends \Magento\Reports\Controller\Adminhtml\Report\Product implements HttpGetActionInterface
 {

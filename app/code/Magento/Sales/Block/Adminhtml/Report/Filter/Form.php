@@ -12,7 +12,7 @@ namespace Magento\Sales\Block\Adminhtml\Report\Filter;
  * @SuppressWarnings(PHPMD.DepthOfInheritance)
  * @since 100.0.2
  */
-class Form extends \Magento\Reports\Block\Adminhtml\Filter\Form
+class Form extends \Magento\ReportingFramework\Block\Adminhtml\Filter\Form
 {
     /**
      * @var \Magento\Sales\Model\Order\ConfigFactory
