@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\RemoteStorage\Plugin\MediaGalleryMetadata;
+namespace Magento\MediaGalleryMetadataRemoteStorage\Plugin\MediaGalleryMetadata;
 
 use Magento\Framework\Exception\FileSystemException;
 use Magento\MediaGalleryMetadata\Model\ExifReader as Subject;
