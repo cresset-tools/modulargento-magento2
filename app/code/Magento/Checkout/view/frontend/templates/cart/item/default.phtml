@@ -13,9 +13,10 @@
 $_item = $block->getItem();
 $product = $_item->getProduct();
 $isVisibleProduct = $product->isVisibleInSiteVisibility();
-/** @var \Magento\Msrp\Helper\Data $helper */
-$helper = $this->helper(Magento\Msrp\Helper\Data::class);
-$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+// MAP applicability via the block (MsrpDisplayProviderInterface seam) — the
+// previous $this->helper(\Magento\Msrp\Helper\Data::class) fataled the cart page
+// in a build without Magento_Msrp, where that helper class doesn't exist.
+$canApplyMsrp = $block->isMsrpApplicable($product);
 ?>
 <tbody class="cart item">
     <tr class="item-info">
