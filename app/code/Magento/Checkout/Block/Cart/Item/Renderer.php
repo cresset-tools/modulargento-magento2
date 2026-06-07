@@ -623,4 +623,25 @@ class Renderer extends \Magento\Framework\View\Element\Template implements
     {
         return $this->imageBuilder->create($product, $imageId, $attributes);
     }
+
+    /**
+     * Whether MAP ("minimum advertised price") gating applies to the cart item's
+     * product — its price must be hidden until order confirmation.
+     *
+     * Routed through MsrpDisplayProviderInterface (the Null default reports "not
+     * applicable" when Magento_Msrp isn't installed) so the cart template no
+     * longer hard-depends on Magento\Msrp\Helper\Data via $this->helper(): that
+     * class is absent in a build without Msrp, which fataled the cart page.
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @return bool
+     */
+    public function isMsrpApplicable($product)
+    {
+        $provider = ObjectManager::getInstance()
+            ->get(\Magento\Catalog\Model\Product\MsrpDisplayProviderInterface::class);
+
+        return $provider->isShowBeforeOrderConfirm($product)
+            && $provider->isMinimalPriceLessMsrp($product);
+    }
 }
