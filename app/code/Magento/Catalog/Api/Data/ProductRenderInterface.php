@@ -220,7 +220,7 @@ interface ProductRenderInterface extends ExtensibleDataInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Magento\Catalog\Api\Data\ProductRenderExtensionInterface
+     * @return \Magento\Catalog\Api\Data\ProductRenderExtensionInterface|null
      * @since 102.0.0
      */
     public function getExtensionAttributes();
