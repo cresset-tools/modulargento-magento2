@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace Magento\Webapi\Model\Authorization;
+namespace Magento\WebapiAuthorization\Model\Authorization;
 
 use Magento\Authorization\Model\UserContextInterface;
 

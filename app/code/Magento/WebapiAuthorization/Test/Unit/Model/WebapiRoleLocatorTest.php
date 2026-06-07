@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\Webapi\Test\Unit\Model;
+namespace Magento\WebapiAuthorization\Test\Unit\Model;
 
 use Magento\Authorization\Model\CompositeUserContext;
 use Magento\Authorization\Model\ResourceModel\Role\Collection as RoleCollection;
@@ -13,7 +13,7 @@ use Magento\Authorization\Model\ResourceModel\Role\CollectionFactory as RoleColl
 use Magento\Authorization\Model\Role;
 use Magento\Authorization\Model\UserContextInterface;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Webapi\Model\WebapiRoleLocator;
+use Magento\WebapiAuthorization\Model\WebapiRoleLocator;
 use PHPUnit\Framework\TestCase;
 
 /**

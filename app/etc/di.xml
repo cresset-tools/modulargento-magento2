@@ -233,7 +233,6 @@
             <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
         </arguments>
     </type>
-    <preference for="Magento\AsynchronousOperations\Model\ConfigInterface" type="Magento\WebapiAsync\Model\Config\Proxy" />
     <virtualType name="Magento\Framework\Communication\Config\Reader\XmlReader" type="Magento\Framework\Config\Reader\Filesystem">
         <arguments>
             <argument name="converter" xsi:type="object">Magento\Framework\Communication\Config\Reader\XmlReader\Converter</argument>
@@ -249,7 +248,7 @@
         <arguments>
             <argument name="readers" xsi:type="array">
                 <item name="asyncServiceReader" xsi:type="array">
-                    <item name="reader" xsi:type="object">Magento\WebapiAsync\Code\Generator\Config\RemoteServiceReader\Communication</item>
+                    <item name="reader" xsi:type="object">Magento\AsynchronousOperations\Model\Config\Reader\AsyncCommunicationConfigReader</item>
                     <item name="sortOrder" xsi:type="string">0</item>
                 </item>
                 <item name="xmlReader" xsi:type="array">
@@ -1736,7 +1735,7 @@
     <type name="Magento\Framework\MessageQueue\Publisher\Config\CompositeReader">
         <arguments>
             <argument name="readers" xsi:type="array">
-                <item name="asyncServiceReader" xsi:type="object" sortOrder="0">Magento\WebapiAsync\Code\Generator\Config\RemoteServiceReader\Publisher</item>
+                <item name="asyncServiceReader" xsi:type="object" sortOrder="0">Magento\AsynchronousOperations\Model\Config\Reader\AsyncPublisherConfigReader</item>
                 <item name="remoteServiceReader" xsi:type="object" sortOrder="10">Magento\Framework\MessageQueue\Publisher\Config\RemoteService\Reader</item>
                 <item name="xmlReader" xsi:type="object" sortOrder="20">Magento\Framework\MessageQueue\Publisher\Config\Xml\Reader</item>
                 <item name="envReader" xsi:type="object" sortOrder="30">Magento\Framework\MessageQueue\Publisher\Config\Env\Reader</item>

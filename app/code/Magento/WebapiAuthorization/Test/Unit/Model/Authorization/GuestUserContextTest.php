@@ -5,15 +5,15 @@
  */
 declare(strict_types=1);
 
-namespace Magento\Webapi\Test\Unit\Model\Authorization;
+namespace Magento\WebapiAuthorization\Test\Unit\Model\Authorization;
 
 use Magento\Authorization\Model\UserContextInterface;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Webapi\Model\Authorization\GuestUserContext;
+use Magento\WebapiAuthorization\Model\Authorization\GuestUserContext;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests Magento\Webapi\Model\Authorization\GuestUserContext
+ * Tests Magento\WebapiAuthorization\Model\Authorization\GuestUserContext
  */
 class GuestUserContextTest extends TestCase
 {
