@@ -15,7 +15,10 @@
 /** @var \Magento\Catalog\Pricing\Price\TierPrice $tierPriceModel */
 $tierPriceModel = $block->getPrice();
 $tierPrices = $tierPriceModel->getTierPriceList();
-$msrpShowOnGesture = $block->getPriceType('msrp_price')->isShowPriceOnGesture();
+// 'msrp_price' is only registered when Magento_Msrp is installed; resolve it
+// safely so a build without Msrp doesn't fatal in the price factory.
+$msrpPriceType = $block->getMsrpPriceTypeOrNull();
+$msrpShowOnGesture = $msrpPriceType !== null && $msrpPriceType->isShowPriceOnGesture();
 $product = $block->getSaleableItem();
 ?>
 <?php if (count($tierPrices)): ?>
@@ -44,7 +47,7 @@ $product = $block->getSaleableItem();
                             ]
                         ),
                         'msrpPrice' => $block->renderAmount(
-                            $block->getPriceType('msrp_price')->getAmount(),
+                            $msrpPriceType->getAmount(),
                             [
                                 'price_id'          => $index,
                                 'id_suffix'         => '-' . $index,
