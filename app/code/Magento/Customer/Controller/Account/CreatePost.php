@@ -381,9 +381,17 @@ class CreatePost extends AbstractAccount implements CsrfAwareActionInterface, Ht
             $redirectUrl = $this->session->getBeforeAuthUrl();
             $this->checkPasswordConfirmation($password, $confirmation);
 
+            // `is_subscribed` is an extension attribute declared by
+            // Magento_Newsletter's extension_attributes.xml; without that module
+            // the generated CustomerExtension has no setIsSubscribed(), so the
+            // unconditional call fatals every registration. Guard on the method
+            // (it exists exactly when an enabled module declares the attribute)
+            // so Customer keeps no hard dependency on Newsletter.
             $extensionAttributes = $customer->getExtensionAttributes();
-            $extensionAttributes->setIsSubscribed($this->getRequest()->getParam('is_subscribed', false));
-            $customer->setExtensionAttributes($extensionAttributes);
+            if ($extensionAttributes !== null && method_exists($extensionAttributes, 'setIsSubscribed')) {
+                $extensionAttributes->setIsSubscribed($this->getRequest()->getParam('is_subscribed', false));
+                $customer->setExtensionAttributes($extensionAttributes);
+            }
 
             $customer = $this->accountManagement
                 ->createAccount($customer, $password, $redirectUrl);
