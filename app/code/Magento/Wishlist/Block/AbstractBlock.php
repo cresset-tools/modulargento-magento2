@@ -51,13 +51,15 @@ abstract class AbstractBlock extends \Magento\Catalog\Block\Product\AbstractProd
      * @param array $data
      * @param ConfigInterface|null $config
      * @param UrlBuilder|null $urlBuilder
+     * @param \Magento\Wishlist\Helper\Data|null $wishlistHelper
      */
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = [],
         ?ConfigInterface $config = null,
-        ?UrlBuilder $urlBuilder = null
+        ?UrlBuilder $urlBuilder = null,
+        ?\Magento\Wishlist\Helper\Data $wishlistHelper = null
     ) {
         $this->httpContext = $httpContext;
         parent::__construct(
@@ -66,6 +68,15 @@ abstract class AbstractBlock extends \Magento\Catalog\Block\Product\AbstractProd
         );
         $this->viewConfig = $config ?? ObjectManager::getInstance()->get(ConfigInterface::class);
         $this->imageUrlBuilder = $urlBuilder ?? ObjectManager::getInstance()->get(UrlBuilder::class);
+        // The Catalog block context deliberately carries only the narrow
+        // Catalog\Helper\Wishlist\AddToWishlistInterface adapter (so Catalog has
+        // no hard Magento_Wishlist dependency), but Wishlist's own blocks — and
+        // subclasses touching $_wishlistHelper directly, e.g. Share\Email\Items —
+        // need the full helper API (getWishlist(), getRemoveParams(), ...).
+        // Inside Magento_Wishlist that dependency is no layering violation, so
+        // replace the inherited adapter with the real helper.
+        $this->_wishlistHelper = $wishlistHelper
+            ?? ObjectManager::getInstance()->get(\Magento\Wishlist\Helper\Data::class);
     }
 
     /**
