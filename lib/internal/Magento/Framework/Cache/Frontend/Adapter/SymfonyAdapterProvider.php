@@ -72,6 +72,15 @@ class SymfonyAdapterProvider implements ResetAfterRequestInterface
         // Valkey backends
         'valkey' => 'redis',
 
+        // Legacy Zend-era backend class names (the canonical Magento 2 config
+        // values; every published redis cache setup uses Cm_Cache_Backend_Redis).
+        // Their backend_options (server/port/database/password) are read by the
+        // corresponding adapters, so the mapping is drop-in.
+        'cm_cache_backend_redis' => 'redis',
+        'magento\framework\cache\backend\redis' => 'redis',
+        'cm_cache_backend_file' => 'filesystem',
+        'zend_cache_backend_file' => 'filesystem',
+
         // Memcached backends
         'memcached' => 'memcached',
         'libmemcached' => 'memcached',
@@ -81,6 +90,7 @@ class SymfonyAdapterProvider implements ResetAfterRequestInterface
 
         // Database backend
         'database' => 'database',
+        'magento\framework\cache\backend\database' => 'database',
 
         // APCu backends
         'apc' => 'apcu',
