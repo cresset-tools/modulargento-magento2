@@ -155,6 +155,7 @@
         "magento/module-configurable-import-export": "*",
         "magento/module-configurable-product": "*",
         "magento/module-configurable-product-sales": "*",
+        "magento/module-configurable-product-catalog-widget": "*",
         "magento/module-contact": "*",
         "magento/module-contact-graph-ql": "*",
         "magento/module-cookie": "*",

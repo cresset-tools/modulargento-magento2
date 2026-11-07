@@ -25,8 +25,7 @@
         "magento/module-tax": "*",
         "magento/module-theme": "*",
         "magento/module-ui": "*",
-        "magento/module-authorization": "*",
-        "magento/module-csp": "*"
+        "magento/module-authorization": "*"
     },
     "suggest": {
         "magento/module-cookie": "*"
