@@ -127,7 +127,9 @@ class SriCompactStrategyDeploymentTest extends TestCase
             Options::EXCLUDE_THEME => ['none'],
             Options::LANGUAGE => ['en_US', 'de_DE'],
             Options::EXCLUDE_LANGUAGE => ['none'],
-            Options::JOBS_AMOUNT => 4,
+            // One job: with more, the deploy forks, and afterwards the app area is left
+            // unset, which broke the SRI tests that run after this one in the suite.
+            Options::JOBS_AMOUNT => 1,
             Options::SYMLINK_LOCALE => false,
             Options::STRATEGY => DeployStrategyFactory::DEPLOY_STRATEGY_COMPACT,
         ];

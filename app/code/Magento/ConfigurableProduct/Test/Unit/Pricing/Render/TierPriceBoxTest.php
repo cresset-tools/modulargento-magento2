@@ -8,16 +8,15 @@ declare(strict_types=1);
 namespace Magento\ConfigurableProduct\Test\Unit\Pricing\Render;
 
 use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\Product\MsrpDisplayProviderInterface;
 use Magento\Catalog\Model\Product\Pricing\Renderer\SalableResolverInterface;
 use Magento\Catalog\Pricing\Price\MinimalPriceCalculatorInterface;
 use Magento\ConfigurableProduct\Pricing\Price\ConfigurableOptionsProviderInterface;
 use Magento\ConfigurableProduct\Pricing\Render\TierPriceBox;
 use Magento\Framework\Pricing\Price\PriceInterface;
-use Magento\Framework\Pricing\PriceInfoInterface;
 use Magento\Framework\Pricing\Render\RendererPool;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Msrp\Pricing\Price\MsrpPrice;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -59,6 +58,11 @@ class TierPriceBoxTest extends TestCase
     private $configurableOptionsProvider;
 
     /**
+     * @var MsrpDisplayProviderInterface|MockObject
+     */
+    private $msrpDisplayProvider;
+
+    /**
      * @var TierPriceBox
      */
     private $model;
@@ -69,12 +73,13 @@ class TierPriceBoxTest extends TestCase
     protected function setUp(): void
     {
         $this->context = $this->createPartialMock(Context::class, []);
-        $this->saleableItem = $this->createPartialMock(Product::class, ['getPriceInfo']);
+        $this->saleableItem = $this->createPartialMock(Product::class, []);
         $this->price = $this->createMock(PriceInterface::class);
         $this->rendererPool = $this->createPartialMock(RendererPool::class, []);
         $this->salableResolver = $this->createPartialMock(SalableResolverInterface::class, ['isSalable']);
         $this->minimalPriceCalculator = $this->createMock(MinimalPriceCalculatorInterface::class);
         $this->configurableOptionsProvider = $this->createMock(ConfigurableOptionsProviderInterface::class);
+        $this->msrpDisplayProvider = $this->createMock(MsrpDisplayProviderInterface::class);
 
         $this->model = (new ObjectManager($this))->getObject(
             TierPriceBox::class,
@@ -86,31 +91,21 @@ class TierPriceBoxTest extends TestCase
                 'salableResolver' => $this->salableResolver,
                 'minimalPriceCalculator' => $this->minimalPriceCalculator,
                 'configurableOptionsProvider' => $this->configurableOptionsProvider,
+                'msrpDisplayProvider' => $this->msrpDisplayProvider,
             ]
         );
     }
 
     public function testToHtmlEmptyWhenMsrpPriceIsApplicable(): void
     {
-        $msrpPriceMock = $this->createPartialMock(
-            MsrpPrice::class,
-            ['canApplyMsrp', 'isMinimalPriceLessMsrp']
-        );
-        $msrpPriceMock->expects($this->once())
+        $this->msrpDisplayProvider->expects($this->once())
             ->method('canApplyMsrp')
+            ->with($this->saleableItem)
             ->willReturn(true);
-        $msrpPriceMock->expects($this->once())
+        $this->msrpDisplayProvider->expects($this->once())
             ->method('isMinimalPriceLessMsrp')
+            ->with($this->saleableItem)
             ->willReturn(true);
-
-        $priceInfoMock = $this->createMock(PriceInfoInterface::class);
-        $priceInfoMock->expects($this->once())
-            ->method('getPrice')
-            ->willReturn($msrpPriceMock);
-
-        $this->saleableItem->expects($this->once())
-            ->method('getPriceInfo')
-            ->willReturn($priceInfoMock);
 
         $result = $this->model->toHtml();
         $this->assertSame('', $result);

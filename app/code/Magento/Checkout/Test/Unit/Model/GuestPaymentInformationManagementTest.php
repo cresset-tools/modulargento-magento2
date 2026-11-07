@@ -24,6 +24,7 @@ use Magento\Quote\Api\GuestCartManagementInterface;
 use Magento\Quote\Api\GuestPaymentMethodManagementInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Address;
+use Magento\Quote\Model\GuestCart\GetGuestCart;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -123,7 +124,8 @@ class GuestPaymentInformationManagementTest extends TestCase
             $this->limiterMock,
             $this->saveLimiterMock,
             $this->addressComparatorMock,
-            $quoteAddressValidationServiceMock
+            $quoteAddressValidationServiceMock,
+            $this->createMock(GetGuestCart::class)
         );
     }
 
@@ -149,7 +151,7 @@ class GuestPaymentInformationManagementTest extends TestCase
     public function testSavePaymentInformationAndPlaceOrderException()
     {
         $this->expectException('Magento\Framework\Exception\CouldNotSaveException');
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);
@@ -188,7 +190,7 @@ class GuestPaymentInformationManagementTest extends TestCase
 
     public function testSavePaymentInformationWithoutBillingAddress()
     {
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);
@@ -213,7 +215,7 @@ class GuestPaymentInformationManagementTest extends TestCase
     {
         $this->expectException('Magento\Framework\Exception\CouldNotSaveException');
         $this->expectExceptionMessage('DB exception');
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);
@@ -242,7 +244,7 @@ class GuestPaymentInformationManagementTest extends TestCase
     {
         $this->expectException('Magento\Framework\Exception\CouldNotSaveException');
         $this->expectExceptionMessage('Some of the products are disabled.');
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);
@@ -264,12 +266,12 @@ class GuestPaymentInformationManagementTest extends TestCase
     }
 
     /**
-     * @param int $cartId
+     * @param string $cartId
      * @param MockObject $billingAddressMock
      * @return void
      */
     private function getMockForAssignBillingAddress(
-        int $cartId,
+        string $cartId,
         MockObject $billingAddressMock
     ) : void {
         $quoteIdMask = $this->createPartialMockWithReflection(QuoteIdMask::class, ['load', 'getQuoteId']);
@@ -310,7 +312,7 @@ class GuestPaymentInformationManagementTest extends TestCase
      */
     private function placeOrder(?int $orderId = 200)
     {
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);
@@ -334,7 +336,7 @@ class GuestPaymentInformationManagementTest extends TestCase
      */
     private function savePayment()
     {
-        $cartId = 100;
+        $cartId = 'masked_id';
         $email = 'email@magento.com';
         $paymentMock = $this->createMock(PaymentInterface::class);
         $billingAddressMock = $this->createMock(AddressInterface::class);

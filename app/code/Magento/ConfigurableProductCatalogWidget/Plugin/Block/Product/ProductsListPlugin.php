@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurableProduct\Plugin\CatalogWidget\Block\Product;
+namespace Magento\ConfigurableProductCatalogWidget\Plugin\Block\Product;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Config;

@@ -11,6 +11,7 @@ use Magento\Checkout\Api\Data\PaymentDetailsInterface;
 use Magento\Checkout\Api\Data\ShippingInformationInterface;
 use Magento\Checkout\Api\ShippingInformationManagementInterface;
 use Magento\Checkout\Model\GuestShippingInformationManagement;
+use Magento\Quote\Model\GuestCart\GetGuestCart;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Quote\Model\QuoteIdMask;
 use Magento\Framework\TestFramework\Unit\Helper\MockCreationTrait;
@@ -47,7 +48,8 @@ class GuestShippingInformationManagementTest extends TestCase
         );
         $this->model = new GuestShippingInformationManagement(
             $this->quoteIdMaskFactoryMock,
-            $this->shippingInformationManagementMock
+            $this->shippingInformationManagementMock,
+            $this->createMock(GetGuestCart::class)
         );
     }
 

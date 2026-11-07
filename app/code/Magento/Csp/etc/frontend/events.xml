@@ -9,4 +9,8 @@
     <event name="controller_front_send_response_before">
         <observer name="csp_render" instance="Magento\Csp\Observer\Render" />
     </event>
+    <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="cps_storefront_checkout_index_index_predispatch"
+                  instance="Magento\Csp\Observer\CheckoutInlineTranslationPolicy"/>
+    </event>
 </config>

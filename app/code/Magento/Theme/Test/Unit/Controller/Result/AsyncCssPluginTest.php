@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Magento\Theme\Test\Unit\Controller\Result;
 
 use Magento\Theme\Controller\Result\AsyncCssPlugin;
-use Magento\Csp\Api\InlineUtilInterface;
 use Magento\Framework\App\Response\Http;
 use PHPUnit\Framework\TestCase;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -48,9 +48,9 @@ class AsyncCssPluginTest extends TestCase
     private $layoutMock;
 
     /**
-     * @var InlineUtilInterface|MockObject
+     * @var SecureHtmlRenderer|MockObject
      */
-    private $cspInlineUtilMock;
+    private $secureRendererMock;
 
     /**
      * @inheritdoc
@@ -61,14 +61,14 @@ class AsyncCssPluginTest extends TestCase
 
         $this->httpMock = $this->createMock(Http::class);
         $this->layoutMock = $this->createMock(Layout::class);
-        $this->cspInlineUtilMock = $this->createMock(InlineUtilInterface::class);
+        $this->secureRendererMock = $this->createMock(SecureHtmlRenderer::class);
 
         $objectManager = new ObjectManagerHelper($this);
         $this->plugin = $objectManager->getObject(
             AsyncCssPlugin::class,
             [
                 'scopeConfig' => $this->scopeConfigMock,
-                'cspInlineUtil' => $this->cspInlineUtilMock
+                'secureRenderer' => $this->secureRendererMock
             ]
         );
     }
@@ -160,7 +160,7 @@ class AsyncCssPluginTest extends TestCase
             ->willReturn($isSetFlag);
 
         if ($isSetFlag) {
-            $this->cspInlineUtilMock->expects($this->any())
+            $this->secureRendererMock->expects($this->any())
                 ->method('renderEventListener')
                 ->with(
                     'onload',
