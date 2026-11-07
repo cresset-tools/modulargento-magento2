@@ -1,0 +1,28 @@
+{
+    "name": "magento/module-configurable-product-catalog-widget",
+    "description": "Adds configurable parents of hidden child products to Catalog Products List widgets — bridge between Magento_ConfigurableProduct and Magento_CatalogWidget so each can be installed independently.",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-catalog-widget": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-store": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\ConfigurableProductCatalogWidget\\": ""
+        }
+    }
+}

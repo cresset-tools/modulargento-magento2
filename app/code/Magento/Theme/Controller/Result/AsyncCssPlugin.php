@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Magento\Theme\Controller\Result;
 
-use Magento\Csp\Api\InlineUtilInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Response\HttpInterface as HttpResponseInterface;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use Magento\Framework\View\Result\Layout;
 
 /**
@@ -28,21 +28,23 @@ class AsyncCssPlugin
     private $scopeConfig;
 
     /**
-     * @var InlineUtilInterface
+     * Renders the onload listener; Magento_Csp, when installed, whitelists it.
+     *
+     * @var SecureHtmlRenderer
      */
-    private $cspInlineUtil;
+    private $secureRenderer;
 
     /**
      * @param ScopeConfigInterface $scopeConfig
-     * @param InlineUtilInterface|null $cspInlineUtil
+     * @param SecureHtmlRenderer|null $secureRenderer
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        ?InlineUtilInterface $cspInlineUtil = null
+        ?SecureHtmlRenderer $secureRenderer = null
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->cspInlineUtil = $cspInlineUtil ?: ObjectManager::getInstance()->get(
-            InlineUtilInterface::class
+        $this->secureRenderer = $secureRenderer ?: ObjectManager::getInstance()->get(
+            SecureHtmlRenderer::class
         );
     }
 
@@ -111,7 +113,7 @@ class AsyncCssPlugin
                 $media = $mediaAttribute[2];
             }
             $media = $media ?? 'all';
-            $onload = $this->cspInlineUtil->renderEventListener(
+            $onload = $this->secureRenderer->renderEventListener(
                 'onload',
                 sprintf('this.onload=null;this.media=\'%s\'', $media)
             );

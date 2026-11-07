@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\Checkout\Observer;
+namespace Magento\Csp\Observer;
 
 use Magento\Csp\Model\Collector\DynamicCollector;
 use Magento\Csp\Model\Policy\FetchPolicy;
@@ -14,9 +14,13 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Translate\InlineInterface;
 
 /**
- * Observer for adding CSP policy for inline translation
+ * Allows inline event handlers on the checkout page while inline translation is on.
+ *
+ * Lives in Magento_Csp (it used to be Magento\Checkout\Observer\CspPolicyObserver) so
+ * Magento_Checkout doesn't depend on Magento_Csp; it only listens for the checkout
+ * page's predispatch event, which fires only when Magento_Checkout is installed.
  */
-class CspPolicyObserver implements ObserverInterface
+class CheckoutInlineTranslationPolicy implements ObserverInterface
 {
     /**
      * @var InlineInterface
